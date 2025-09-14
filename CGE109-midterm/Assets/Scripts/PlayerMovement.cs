@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     bool grounded;
 
     public CapsuleCollider Collider;
+
+    private float speed = 1;
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -31,10 +33,12 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        grounded = Physics.Raycast(transform.position, Vector3.down, (playheight * 0.5f)*Collider.height/2 + 1f, Environment);
+        grounded = Physics.Raycast(transform.position, Vector3.down, (playheight * 0.5f) + 0.9f, Environment);
         if (grounded)
+        {
             rb.linearDamping = groundDrag;
-        else rb.angularDamping = 0;
+        }
+        else if (!grounded) { rb.linearDamping = 0; }
         Debug.Log(rb.linearDamping);
         Debug.Log(grounded);
 
@@ -44,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
 
         MoveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
-        rb.AddForce(MoveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+        rb.AddForce(MoveDirection.normalized * moveSpeed * 10f * speed, ForceMode.Force);
         Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
 
         if (flatVel.magnitude > moveSpeed)
@@ -55,13 +59,15 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
-            Collider.center = new Vector3(0, .5f, 0); 
+            //Collider.center = new Vector3(0, .5f, 0); 
             Collider.height = 1f;
+            speed = 0.75f;
         }
         else
         {
-            Collider.center = new Vector3(0, 0, 0);
+            //Collider.center = new Vector3(0, 0, 0);
             Collider.height = 2f;
+            speed = 1f;
         }
 
 
