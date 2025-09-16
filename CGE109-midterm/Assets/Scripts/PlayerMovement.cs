@@ -61,13 +61,15 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
             //Collider.center = new Vector3(0, .5f, 0); 
-            Collider.height = 1f;
+            //Collider.height = 1f;
+            this.gameObject.transform.localScale = new Vector3(1f, .5f,1f);
             speed = 0.75f;
         }
         else
         {
             //Collider.center = new Vector3(0, 0, 0);
-            Collider.height = 2f;
+            //Collider.height = 2f;
+            this.gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
             speed = 1f;
         }
 
@@ -93,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
         if(Physics.Raycast(transform.position, Vector3.down, out slopeHit, playheight*0.5f + 1.25f))
         {
             float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
-            return angle < maxSlopeAngle && angle != 0;
+            return angle < maxSlopeAngle && angle != 0 && angle > 10;
         }
 
         return false;
