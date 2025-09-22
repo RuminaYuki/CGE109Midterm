@@ -23,6 +23,8 @@ public class PlayerMovement : MonoBehaviour
     private RaycastHit slopeHit;
 
     private float speed = 1;
+
+    private bool isAlt;
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -58,7 +60,12 @@ public class PlayerMovement : MonoBehaviour
             rb.linearVelocity = new Vector3(limittedVel.x, rb.linearVelocity.y, limittedVel.z);
         }
 
-        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        if(!(Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl)) || !(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)))
+        {
+            speed = 1f;
+        }
+
+        if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
         {
             //Collider.center = new Vector3(0, .5f, 0); 
             //Collider.height = 1f;
@@ -70,7 +77,6 @@ public class PlayerMovement : MonoBehaviour
             //Collider.center = new Vector3(0, 0, 0);
             //Collider.height = 2f;
             this.gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
-            speed = 1f;
         }
 
 
@@ -78,6 +84,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Moveplayer()
     {
+        //Runplayer();
         if (OnSlope())
         {
             rb.AddForce(GetSlopeMoveDirection() * moveSpeed * 5f * speed, ForceMode.Force);
@@ -88,11 +95,25 @@ public class PlayerMovement : MonoBehaviour
         }
 
         rb.useGravity = !OnSlope();
+        print(speed);
+    }
+
+    private void Runplayer()
+    {
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        {
+            speed = 2f;
+            isAlt = true;
+        }
+        else
+        {
+            isAlt = false;
+        }
     }
 
     private bool OnSlope()
     {
-        if(Physics.Raycast(transform.position, Vector3.down, out slopeHit, playheight*0.5f + 1.25f))
+        if(Physics.Raycast(transform.position, Vector3.down, out slopeHit, playheight*0.5f + 1.25f) && !isAlt)
         {
             float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
             return angle < maxSlopeAngle && angle != 0 && angle > 10;
