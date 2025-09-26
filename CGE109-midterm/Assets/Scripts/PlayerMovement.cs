@@ -1,108 +1,77 @@
-using UnityEngine;
-using UnityEngine.EventSystems;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 1f;
-    private Vector3 MoveDirection;
-    public Transform orientation;
-    private Rigidbody rb;
+    public float moveSpeed = 5f;
+    public float groundDrag = 5f;
 
-    float horizontalInput, verticalInput;
+    public Transform orientation;          // บอกทิศทางการเคลื่อนที่ (ตามกล้อง)
+    public Transform groundCheck;          // จุดเช็คพื้น (วางไว้ใต้ตัวละคร)
+    public float groundDistance = 0.4f;    // รัศมีเช็คพื้น
+    public LayerMask environmentMask;      // เลเยอร์ที่ถือว่าเป็นพื้น
 
-    public float groundDrag;
+    public float jumpHeight = 2f;
+    public float gravity = -9.81f;
 
-    public float playheight;
-    public LayerMask Environment;
-    bool grounded;
+    private CharacterController controller;
+    private Vector3 moveDirection;
+    private Vector3 velocity;              // ใช้เก็บแรงโน้มถ่วง
 
-    public CapsuleCollider Collider;
+    private bool grounded;
+    private float speedMultiplier = 1f;
 
-    public float maxSlopeAngle;
-    private RaycastHit slopeHit;
-
-    private float speed = 1;
-    private void Awake()
+    void Awake()
     {
-        rb = GetComponent<Rigidbody>();
-    }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
+        controller = GetComponent<CharacterController>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        grounded = Physics.Raycast(transform.position, Vector3.down, (playheight * 0.5f) + 1.25f, Environment);
-        if (grounded)
+        // ✅ เช็คชนพื้น + เลเยอร์
+        grounded = Physics.CheckSphere(groundCheck.position, groundDistance, environmentMask);
+
+        if (grounded && velocity.y < 0)
         {
-            rb.linearDamping = groundDrag;
-        }
-        else if (!grounded) { rb.linearDamping = 0; }
-
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
-
-        Moveplayer();
-        MoveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-
-        
-        Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
-
-        if (flatVel.magnitude > moveSpeed)
-        {
-            Vector3 limittedVel = flatVel.normalized * moveSpeed;
-            rb.linearVelocity = new Vector3(limittedVel.x, rb.linearVelocity.y, limittedVel.z);
+            velocity.y = -2f; // รีเซ็ตค่าเวลาติดพื้น
         }
 
+        // ✅ รับ input
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        float verticalInput = Input.GetAxisRaw("Vertical");
+
+        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        moveDirection.Normalize();
+
+        // ✅ เคลื่อนที่
+        controller.Move(moveDirection * moveSpeed * speedMultiplier * Time.deltaTime);
+
+        // ✅ กดนั่ง (Crouch)
+        if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
+        {
+            transform.localScale = new Vector3(1f, 0.4f, 1f);
+            speedMultiplier = 0.75f;
+        }
+        else
+        {
+            transform.localScale = new Vector3(1f, 1f, 1f);
+            speedMultiplier = 1f;
+        }
+
+        // ✅ กดวิ่ง (Sprint)
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
-            //Collider.center = new Vector3(0, .5f, 0); 
-            //Collider.height = 1f;
-            this.gameObject.transform.localScale = new Vector3(1f, .5f,1f);
-            speed = 0.75f;
+            speedMultiplier = 2f;
         }
-        else
+
+        // ✅ กระโดด
+        if (grounded && Input.GetButtonDown("Jump"))
         {
-            //Collider.center = new Vector3(0, 0, 0);
-            //Collider.height = 2f;
-            this.gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
-            speed = 1f;
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
 
-
-    }
-
-    private void Moveplayer()
-    {
-        if (OnSlope())
-        {
-            rb.AddForce(GetSlopeMoveDirection() * moveSpeed * 5f * speed, ForceMode.Force);
-        }
-        else
-        {
-            rb.AddForce(MoveDirection.normalized * moveSpeed * 10f * speed, ForceMode.Force);
-        }
-
-        rb.useGravity = !OnSlope();
-    }
-
-    private bool OnSlope()
-    {
-        if(Physics.Raycast(transform.position, Vector3.down, out slopeHit, playheight*0.5f + 1.25f))
-        {
-            float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
-            return angle < maxSlopeAngle && angle != 0 && angle > 10;
-        }
-
-        return false;
-    }
-
-    private Vector3 GetSlopeMoveDirection()
-    {
-        return Vector3.ProjectOnPlane(MoveDirection, slopeHit.normal).normalized;
+        // ✅ ใช้แรงโน้มถ่วง
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
     }
 }
