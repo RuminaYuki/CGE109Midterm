@@ -9,7 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5304224635633721592}
-  m_Layer: 0
+  - component: {fileID: 92159571672452623}
+  - component: {fileID: 8145405156359829712}
+  m_Layer: 16
   m_Name: BrokenGlassGroup2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,6 +37,40 @@ Transform:
   - {fileID: 1807464560971863943}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &92159571672452623
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572026391696495628}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.1310735, y: 0.20142621, z: 0.73104227}
+  m_Center: {x: -0.10717797, y: 0.1015608, z: 0.12769073}
+--- !u!114 &8145405156359829712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572026391696495628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbf9574201b7f9a4b93130048e1bd6bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeTime: 0.3
 --- !u!1001 &2205265207082862145
 PrefabInstance:
   m_ObjectHideFlags: 0
