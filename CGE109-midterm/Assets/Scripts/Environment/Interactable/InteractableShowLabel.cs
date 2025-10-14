@@ -1,3 +1,4 @@
+using Gamekit3D.GameCommands;
 using TMPro;
 using UnityEngine;
 //using UnityEngine.Windows;
@@ -11,6 +12,9 @@ public class InteractableShowLabel : MonoBehaviour
     public float UpperY = 0.5f;
 
     public KeyCode _keyCode;
+
+    public bool IsItem = false;
+    [SerializeField] private SimpleTranslator SimpleTranslator;
 
     void Update()
     {
@@ -37,7 +41,18 @@ public class InteractableShowLabel : MonoBehaviour
         {
             if (_keyCode == KeyCode.E)
             {
-                Debug.Log("Pick up item!!");
+                if (IsItem) 
+                {
+                    Debug.Log("Pick up item!!"); 
+                    return;
+                } 
+                if (SimpleTranslator != null) 
+                {
+                    SimpleTranslator.activate = true;
+                    return;
+                }
+                Debug.Log("Nothing");
+                return;
             }
         }
         return;
