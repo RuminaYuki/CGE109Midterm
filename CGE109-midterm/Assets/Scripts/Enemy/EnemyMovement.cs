@@ -19,4 +19,14 @@ public class EnemyMovement : MonoBehaviour
     {
         Agent.SetDestination(m_Position);
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Noise"))
+        {
+            m_Position = other.transform.position; // สั่งเดินไปยังตำแหน่ง Trigger
+            Debug.Log("Enemy added and moving to trigger");
+            
+        }
+    }
 }

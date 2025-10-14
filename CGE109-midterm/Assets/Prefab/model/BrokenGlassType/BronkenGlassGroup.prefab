@@ -113,7 +113,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4806796672779728955}
-  - component: {fileID: 6258466412711400971}
   m_Layer: 16
   m_Name: Noise
   m_TagString: Noise
@@ -136,18 +135,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7702448635709175429}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6258466412711400971
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7687587308238772432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6821091d128c334687ff20c2a0b7e70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2436226637677645718
 PrefabInstance:
   m_ObjectHideFlags: 0
