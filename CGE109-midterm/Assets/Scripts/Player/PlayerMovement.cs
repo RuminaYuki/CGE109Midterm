@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
@@ -20,6 +21,14 @@ public class PlayerMovement : MonoBehaviour
 
     private bool grounded;
     private float speedMultiplier = 1f;
+
+    public bool IsMoveTo;
+    private Vector3 MoveTo;
+    private Vector3 Point;
+    private Vector3 Move;
+
+    public GameObject[] Inventory;
+    private int i = 0;
 
     void Awake()
     {
@@ -44,7 +53,24 @@ public class PlayerMovement : MonoBehaviour
         moveDirection.Normalize();
 
         // ✅ เคลื่อนที่
-        controller.Move(moveDirection * moveSpeed * speedMultiplier * Time.deltaTime);
+        if (!IsMoveTo)
+        {
+            Move = moveDirection * moveSpeed * speedMultiplier ;
+            controller.Move(Move * Time.deltaTime);
+        }
+        else if (IsMoveTo)
+        {
+            MoveTo = (Point - transform.position);
+            MoveTo.y = 0f;
+            MoveTo.Normalize();
+            controller.Move(MoveTo * moveSpeed * speedMultiplier * Time.deltaTime);
+            print(Point + "" + transform.position);
+            if (Point.x - transform.position.x < 0.009f && Point.z - transform.position.z < 0.009f && Point.x - transform.position.x > -0.009f && Point.z - transform.position.z > -0.009f)
+            {
+                print("Stop");
+                IsMoveTo = false;
+            }
+        }
 
         // ✅ กดนั่ง (Crouch)
         if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
@@ -73,5 +99,47 @@ public class PlayerMovement : MonoBehaviour
         // ✅ ใช้แรงโน้มถ่วง
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+    }
+
+    public void MoveToPoint(Vector3 PointToGo) 
+    {
+        IsMoveTo = true;
+        Point = PointToGo;
+        MoveTo = (PointToGo - transform.position);
+        MoveTo.y = 0f;
+        MoveTo.Normalize();
+        Debug.Log(MoveTo);
+    }
+
+    public Vector3 GetMoveMent() 
+    {
+        return Move;
+    }
+
+    public bool GetIsMoveTo()
+    {
+        return IsMoveTo;
+    }
+    
+    public void AddToInventory(GameObject pickUpObj)
+    {
+        bool AddSup = false;
+        i = 0;
+        while (AddSup)
+        {
+            if (Inventory[i] == null)
+            {
+                Inventory[i] = pickUpObj;
+                AddSup = true;
+                Debug.Log(Inventory);
+                return;
+            }
+            i++;
+        }
+    }
+
+    public int GetNumItemInInventory() 
+    {
+        return i;
     }
 }

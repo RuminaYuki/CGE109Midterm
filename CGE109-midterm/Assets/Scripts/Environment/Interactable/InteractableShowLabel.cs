@@ -8,20 +8,41 @@ public class InteractableShowLabel : MonoBehaviour
     [SerializeField] private bool _onFogus = false;
 
     [SerializeField] private GameObject text;
-    public Vector3 _TextStartingpoint;
     public float UpperY = 0.5f;
 
     public KeyCode _keyCode;
+    public bool OneTimeActivateOnly;
+    public Outline OutlineScript;
+    public GameObject GameObj;
 
     public bool IsItem = false;
-    [SerializeField] private SimpleTranslator SimpleTranslator;
+    public bool ItemForThrow = false;
+    [SerializeField] private GameObject Item;
+    [SerializeField] private PickUpScript _pickUpScript;
+
+    [SerializeField] private SimpleTranslator SimpleTranslatorScript;
+    [SerializeField] private Transform PushPoint;
+    [SerializeField] private PushableObject PushableObjectScript;
+
 
     void Update()
     {
         if (_onFogus)
         {
-            text.SetActive(_onFogus);
-            Event();
+            if (PushableObjectScript != null) 
+            {
+                if (PushableObjectScript.IsPush == false)
+                {
+                    text.SetActive(_onFogus);
+                }
+                else { text.SetActive(false); }
+                Event();
+            } else
+            {
+                Event();
+                text.SetActive(_onFogus);
+
+            }
         }
         else if (!_onFogus)
         {
@@ -39,22 +60,68 @@ public class InteractableShowLabel : MonoBehaviour
     {
         if (Input.GetKeyDown(_keyCode))
         {
+            print("HiF");
             if (_keyCode == KeyCode.E)
             {
-                if (IsItem) 
+                if (Item != null && ItemForThrow && _pickUpScript != null)
                 {
-                    Debug.Log("Pick up item!!"); 
-                    return;
-                } 
-                if (SimpleTranslator != null) 
-                {
-                    SimpleTranslator.activate = true;
+                    _pickUpScript.PickUpObject(Item);
+                    print("Hi");
                     return;
                 }
+                if (IsItem) 
+                {
+                    Debug.Log("Pick up item!!");
+                    if (OneTimeActivateOnly) 
+                    {
+                        print("GoDes");
+                        DestroyAfterActivate();
+                    }
+                    return;
+                } 
+                if (SimpleTranslatorScript != null) 
+                {
+                    SimpleTranslatorScript.activate = true;
+                    if (OneTimeActivateOnly)
+                    {
+                        DestroyAfterActivate();
+                    }
+                    return;
+                }
+                if (PushableObjectScript != null)
+                {
+                    if (PushableObjectScript.StartActivate == true)
+                    {
+                        PushableObjectScript.StopPush();
+                        return;
+                    }
+                    if (PushableObjectScript.IsPush == false)
+                    {
+                        PushableObjectScript.PushPoint = this.gameObject;
+                        PushableObjectScript.StartPush(PushPoint);
+                        
+                        return;
+                    }
+                }
+                
                 Debug.Log("Nothing");
                 return;
             }
         }
         return;
+    }
+
+    private void DestroyAfterActivate()
+    {
+        if (OutlineScript != null)
+        {
+            OutlineScript.enabled = false;
+            this.gameObject.SetActive(false);
+        }
+        if (GameObj != null)
+        {
+            Destroy(GameObj);
+        }
+        
     }
 }
