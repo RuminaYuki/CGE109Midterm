@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8571211326903514730}
   - component: {fileID: 1319442668688968685}
   - component: {fileID: 4527463350560208504}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Interactable
   m_TagString: Untagged
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
@@ -366,11 +366,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48077e31e50895f4d85343429c8bb5e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 7587540490412153159}
-  _TextStartingpoint: {x: 0, y: 0, z: 0}
-  UpperY: 0.3
-  outline: {fileID: 0}
   _onFogus: 0
+  text: {fileID: 7587540490412153159}
+  UpperY: 0.3
+  _keyCode: 0
+  OneTimeActivateOnly: 0
+  OutlineScript: {fileID: 0}
+  GameObj: {fileID: 0}
+  IsItem: 0
+  ItemForThrow: 0
+  Item: {fileID: 0}
+  _pickUpScript: {fileID: 0}
+  SimpleTranslatorScript: {fileID: 0}
+  PushPoint: {fileID: 0}
+  PushableObjectScript: {fileID: 0}
 --- !u!1 &5358999036654961494
 GameObject:
   m_ObjectHideFlags: 0

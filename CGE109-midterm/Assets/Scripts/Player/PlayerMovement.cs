@@ -30,9 +30,15 @@ public class PlayerMovement : MonoBehaviour
     public GameObject[] Inventory;
     private int i = 0;
 
+    public GameObject Flashlight;
+    public bool FlashlightOn;
+    public bool KeyCard;
+    public bool KeyCard2;
+
     void Awake()
     {
         controller = GetComponent<CharacterController>();
+        Flashlight.SetActive(false);
     }
 
     void Update()
@@ -141,5 +147,21 @@ public class PlayerMovement : MonoBehaviour
     public int GetNumItemInInventory() 
     {
         return i;
+    }
+
+    public void SetFlashlight()
+    {
+        Flashlight.SetActive(true);
+        FlashlightOn = true;
+    }
+
+    public void SetKeyCard()
+    {
+        KeyCard = true;
+    }
+
+    public void SetKeyCard2()
+    {
+        KeyCard2 = true;
     }
 }

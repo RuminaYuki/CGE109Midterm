@@ -82,6 +82,8 @@ public class Outline : MonoBehaviour {
 
   private bool needsUpdate;
 
+    public bool Active;
+
   void Awake() {
 
     // Cache renderers
@@ -290,7 +292,7 @@ public class Outline : MonoBehaviour {
         case Mode.OutlineVisible:
           outlineMaskMaterial.SetFloat("_ZTest", (float)UnityEngine.Rendering.CompareFunction.Always);
           outlineFillMaterial.SetFloat("_ZTest", (float)UnityEngine.Rendering.CompareFunction.LessEqual);
-          //outlineFillMaterial.SetFloat("_OutlineWidth", outlineWidth);
+          if (Active) { outlineFillMaterial.SetFloat("_OutlineWidth", outlineWidth); }                
           break;
 
         case Mode.OutlineHidden:

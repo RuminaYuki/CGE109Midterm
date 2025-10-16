@@ -14,15 +14,19 @@ public class InteractableShowLabel : MonoBehaviour
     public bool OneTimeActivateOnly;
     public Outline OutlineScript;
     public GameObject GameObj;
+    public PlayerMovement PlayerMovementScript;
 
     public bool IsItem = false;
     public bool ItemForThrow = false;
     [SerializeField] private GameObject Item;
     [SerializeField] private PickUpScript _pickUpScript;
 
-    [SerializeField] private SimpleTranslator SimpleTranslatorScript;
+    [SerializeField] private SimpleTranslatorController SimpleTranslatorControllerScript;
     [SerializeField] private Transform PushPoint;
     [SerializeField] private PushableObject PushableObjectScript;
+
+    public bool NeedKeyCard1;
+    public bool NeedKeyCard2;
 
 
     void Update()
@@ -71,22 +75,65 @@ public class InteractableShowLabel : MonoBehaviour
                 }
                 if (IsItem) 
                 {
-                    Debug.Log("Pick up item!!");
-                    if (OneTimeActivateOnly) 
+                    
+                    if(!PlayerMovementScript.FlashlightOn)
                     {
-                        print("GoDes");
+                        PlayerMovementScript.SetFlashlight();
                         DestroyAfterActivate();
+                        return;
                     }
-                    return;
+                    if (!PlayerMovementScript.KeyCard)
+                    {
+                        //Debug.Log("Pick up item!!");
+                        PlayerMovementScript.SetKeyCard();
+                        DestroyAfterActivate();
+                        return;
+                    }
+                    if (!PlayerMovementScript.KeyCard2)
+                    {
+                        //Debug.Log("Pick up item!!");
+                        PlayerMovementScript.SetKeyCard2();
+                        DestroyAfterActivate();
+                        return;
+                    }
                 } 
-                if (SimpleTranslatorScript != null) 
+                if (SimpleTranslatorControllerScript != null) 
                 {
-                    SimpleTranslatorScript.activate = true;
-                    if (OneTimeActivateOnly)
+                    if (!NeedKeyCard1 && !NeedKeyCard2) 
                     {
-                        DestroyAfterActivate();
+                        SimpleTranslatorControllerScript.activate();
+                        if (OneTimeActivateOnly)
+                        {
+                            DestroyAfterActivate();
+                        }
+                        return;
+                    } else if (PlayerMovementScript != null)
+                    {
+                        if (NeedKeyCard1)
+                        {
+                            if (PlayerMovementScript.KeyCard)
+                            {
+                                SimpleTranslatorControllerScript.activate();
+                                if (OneTimeActivateOnly)
+                                {
+                                    DestroyAfterActivate();
+                                }
+                                return;
+                            }
+                        }
+                        if (NeedKeyCard2)
+                        {
+                            if (PlayerMovementScript.KeyCard2)
+                            {
+                                SimpleTranslatorControllerScript.activate();
+                                if (OneTimeActivateOnly)
+                                {
+                                    DestroyAfterActivate();
+                                }
+                                return;
+                            }
+                        }
                     }
-                    return;
                 }
                 if (PushableObjectScript != null)
                 {
@@ -120,6 +167,7 @@ public class InteractableShowLabel : MonoBehaviour
         }
         if (GameObj != null)
         {
+            Destroy(this.gameObject);
             Destroy(GameObj);
         }
         

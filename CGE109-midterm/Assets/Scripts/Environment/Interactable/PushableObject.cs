@@ -34,14 +34,14 @@ public class PushableObject : MonoBehaviour
             {
                 //transform.SetParent(Player.transform, true);
                 //CharacterController.Move(PlayerMoveMentScript.GetMoveMent());
-                Rigidbody.MovePosition(transform.position + PlayerMoveMentScript.GetMoveMent()*10 * Time.deltaTime);
+                Rigidbody.MovePosition(transform.position + PlayerMoveMentScript.GetMoveMent()*8.5f * Time.deltaTime);
                 //Rigidbody.AddForce(PlayerMoveMentScript.GetMoveMent() * 2, ForceMode.Force);
 
             }
-            if (PushPoint.transform.position.x - Player.transform.position.x > 0.03f && PushPoint.transform.position.z - Player.transform.position.z > 0.03f 
-                || PushPoint.transform.position.x - Player.transform.position.x < -0.03f && PushPoint.transform.position.z - Player.transform.position.z < -0.03f
-                || PushPoint.transform.position.x - Player.transform.position.x > 0.03f && PushPoint.transform.position.z - Player.transform.position.z < -0.03f
-                || PushPoint.transform.position.x - Player.transform.position.x < -0.03f && PushPoint.transform.position.z - Player.transform.position.z > 0.03f)
+            if (PushPoint.transform.position.x - Player.transform.position.x > 0.02f && PushPoint.transform.position.z - Player.transform.position.z > 0.02f 
+                || PushPoint.transform.position.x - Player.transform.position.x < -0.02f && PushPoint.transform.position.z - Player.transform.position.z < -0.02f
+                || PushPoint.transform.position.x - Player.transform.position.x > 0.02f && PushPoint.transform.position.z - Player.transform.position.z < -0.02f
+                || PushPoint.transform.position.x - Player.transform.position.x < -0.02f && PushPoint.transform.position.z - Player.transform.position.z > 0.02f)
             {
                 StopPush();
             }
