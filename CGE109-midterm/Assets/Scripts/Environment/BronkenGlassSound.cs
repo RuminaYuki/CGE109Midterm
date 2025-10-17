@@ -10,7 +10,7 @@ public class BronkenGlassSound : MonoBehaviour
     {
         noiseCollider.enabled = false;
     }
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {

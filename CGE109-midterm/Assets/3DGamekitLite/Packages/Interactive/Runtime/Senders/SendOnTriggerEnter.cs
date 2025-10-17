@@ -16,6 +16,9 @@ namespace Gamekit3D.GameCommands
         private bool active;
         public bool IsCleanning;
 
+        public BronkenGlassSound bgsScript;
+        public Collider Player;
+
         void OnTriggerEnter(Collider other)
         {
             
@@ -26,6 +29,10 @@ namespace Gamekit3D.GameCommands
                 if (KeyCardScanner1 != null)
                 {
                     KeyCardScanner1.SetActive(false);
+                    if(bgsScript != null && Player != null)
+                    {
+                        bgsScript.OnTriggerEnter(Player);
+                    }
                 }
                 if (KeyCardScanner2 != null) 
                 {
