@@ -10487,7 +10487,7 @@ MonoBehaviour:
   isOneShot: 0
   coolDown: 0
   startDelay: 0
-  loopType: 0
+  loopType: 1
   duration: 2
   accelCurve:
     serializedVersion: 2
@@ -10656,17 +10656,17 @@ PrefabInstance:
     - target: {fileID: 1386913121538987356, guid: 7758fae54999aa345b7a23ae49759e38,
         type: 3}
       propertyPath: KeyCard
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1386913121538987356, guid: 7758fae54999aa345b7a23ae49759e38,
         type: 3}
       propertyPath: KeyCard2
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1386913121538987356, guid: 7758fae54999aa345b7a23ae49759e38,
         type: 3}
       propertyPath: FlashlightOn
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7763730072880097221, guid: 7758fae54999aa345b7a23ae49759e38,
         type: 3}
@@ -10676,17 +10676,17 @@ PrefabInstance:
     - target: {fileID: 8086122061207692985, guid: 7758fae54999aa345b7a23ae49759e38,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -7.57
       objectReference: {fileID: 0}
     - target: {fileID: 8086122061207692985, guid: 7758fae54999aa345b7a23ae49759e38,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.841
+      value: -5.3
       objectReference: {fileID: 0}
     - target: {fileID: 8086122061207692985, guid: 7758fae54999aa345b7a23ae49759e38,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 39.48
       objectReference: {fileID: 0}
     - target: {fileID: 8086122061207692985, guid: 7758fae54999aa345b7a23ae49759e38,
         type: 3}
@@ -42342,7 +42342,7 @@ MonoBehaviour:
   isOneShot: 0
   coolDown: 0
   startDelay: 0
-  loopType: 0
+  loopType: 1
   duration: 2
   accelCurve:
     serializedVersion: 2

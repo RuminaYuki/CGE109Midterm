@@ -86,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
             MoveTo.Normalize();
             controller.Move(MoveTo * moveSpeed * speedMultiplier * Time.deltaTime);
             print(Point + "" + transform.position);
-            if (Point.x - transform.position.x < 0.009f && Point.z - transform.position.z < 0.009f && Point.x - transform.position.x > -0.009f && Point.z - transform.position.z > -0.009f)
+            if (Point.x - transform.position.x < 0.02f && Point.z - transform.position.z < 0.02f && Point.x - transform.position.x > -0.02f && Point.z - transform.position.z > -0.02f)
             {
                 print("Stop");
                 IsMoveTo = false;
