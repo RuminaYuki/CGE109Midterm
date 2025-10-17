@@ -1,0 +1,33 @@
+using UnityEngine;
+
+public class ConeRaycast : MonoBehaviour
+{
+    public float coneAngle = 60f; // มุมกรวย
+    public int rayCount = 20; // จำนวน ray ที่จะยิง
+    public float detectionDistance = 10f;
+    public Transform enemyTransform; // จุดเริ่มต้นของการยิง
+    public LayerMask detectionMask; // กำหนด layer ที่จะตรวจ เช่น Player
+
+    void Update()
+    {
+        Vector3 forward = enemyTransform.forward;
+
+        for (int i = 0; i < rayCount; i++)
+        {
+            float angle = (-coneAngle / 2f) + (coneAngle * i / (rayCount - 1));
+            Quaternion rotation = Quaternion.AngleAxis(angle, enemyTransform.up);
+            Vector3 direction = rotation * forward;
+
+            if (Physics.Raycast(enemyTransform.position, direction, out RaycastHit hit, detectionDistance, detectionMask))
+            {
+                Debug.DrawRay(enemyTransform.position, direction * hit.distance, Color.red);
+                Debug.Log("Player detected: " + hit.collider.name);
+                // ทำอะไรบางอย่าง เช่น ยิง หรือไล่ตาม
+            }
+            else
+            {
+                Debug.DrawRay(enemyTransform.position, direction * detectionDistance, Color.green);
+            }
+        }
+    }
+}
