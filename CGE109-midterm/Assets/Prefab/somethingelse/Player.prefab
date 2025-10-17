@@ -43,7 +43,6 @@ GameObject:
   - component: {fileID: 6694656986189368257}
   - component: {fileID: 8156707817350762446}
   - component: {fileID: 380281938956212694}
-  - component: {fileID: 8262682577623662547}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -170,21 +169,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!114 &8262682577623662547
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1510587166745774737}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00ef33e97796cf242b79a096a915d604, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sensitivityX: 2000
-  sensitivityY: 2000
-  orientation: {fileID: 7088494775635297460}
 --- !u!1 &2432287012199450411
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,6 +210,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3966890668998040701}
   - component: {fileID: 5031018709170592033}
+  - component: {fileID: 4835317919887084386}
   m_Layer: 0
   m_Name: CameraHolder
   m_TagString: Untagged
@@ -262,6 +247,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraPosition: {fileID: 8794339575995432750}
+--- !u!114 &4835317919887084386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3847930948509148841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00ef33e97796cf242b79a096a915d604, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensitivityX: 2000
+  sensitivityY: 2000
+  orientation: {fileID: 7088494775635297460}
 --- !u!1 &5818081387366741171
 GameObject:
   m_ObjectHideFlags: 0
@@ -591,9 +591,9 @@ MonoBehaviour:
   IsMoveTo: 0
   Inventory: []
   Flashlight: {fileID: 5818081387366741171}
-  FlashlightOn: 1
-  KeyCard: 1
-  KeyCard2: 1
+  FlashlightOn: 0
+  KeyCard: 0
+  KeyCard2: 0
 --- !u!114 &8230958441195427252
 MonoBehaviour:
   m_ObjectHideFlags: 0

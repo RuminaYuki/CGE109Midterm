@@ -1,4 +1,5 @@
 using System.Drawing;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.XR;
@@ -24,8 +25,8 @@ public class PushableObject : MonoBehaviour
         CharacterController = GetComponent<CharacterController>();
         Rigidbody = GetComponent<Rigidbody>();
     }
-
-    void Update()
+    
+    void FixedUpdate()
     {
         if (PlayerMoveMentScript.GetIsMoveTo() == false && StartActivate)
         {
