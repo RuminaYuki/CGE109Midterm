@@ -24,6 +24,8 @@ public class InteractableShowLabel : MonoBehaviour
     [SerializeField] private SimpleTranslatorController SimpleTranslatorControllerScript;
     [SerializeField] private Transform PushPoint;
     [SerializeField] private PushableObject PushableObjectScript;
+    [SerializeField] private Collider ColliderObj;
+    [SerializeField] private BronkenGlassSound bgsScript;
 
     public bool NeedKeyCard1;
     public bool NeedKeyCard2;
@@ -64,19 +66,22 @@ public class InteractableShowLabel : MonoBehaviour
     {
         if (Input.GetKeyDown(_keyCode))
         {
-            print("HiF");
+            //print("HiF");
             if (_keyCode == KeyCode.E)
             {
                 if (Item != null && ItemForThrow && _pickUpScript != null)
                 {
                     _pickUpScript.PickUpObject(Item);
-                    print("Hi");
+                    //print("Hi");
                     return;
                 }
                 if (IsItem) 
                 {
-                    
-                    if(!PlayerMovementScript.FlashlightOn)
+                    if (bgsScript != null)
+                    {
+                        bgsScript.OnTriggerEnter(ColliderObj);
+                    }
+                    if (!PlayerMovementScript.FlashlightOn)
                     {
                         PlayerMovementScript.SetFlashlight();
                         DestroyAfterActivate();
@@ -96,6 +101,7 @@ public class InteractableShowLabel : MonoBehaviour
                         DestroyAfterActivate();
                         return;
                     }
+                    
                 } 
                 if (SimpleTranslatorControllerScript != null) 
                 {

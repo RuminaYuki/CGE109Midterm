@@ -1,9 +1,12 @@
-﻿using UnityEngine;
+﻿using Gamekit3D;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    //public static PlayerMovement instance;
+
     public float moveSpeed = 5f;
     public float groundDrag = 5f;
 
@@ -38,7 +41,19 @@ public class PlayerMovement : MonoBehaviour
     void Awake()
     {
         controller = GetComponent<CharacterController>();
-        Flashlight.SetActive(false);
+        if (!FlashlightOn)
+        {
+            Flashlight.SetActive(false);
+        }
+
+        /*if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        instance = this;
+        DontDestroyOnLoad(gameObject);*/
     }
 
     void Update()
