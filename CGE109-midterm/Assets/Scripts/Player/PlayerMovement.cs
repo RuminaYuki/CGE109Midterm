@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpHeight = 2f;
     public float gravity = -9.81f;
 
-    private CharacterController controller;
+    public CharacterController controller;
     private Vector3 moveDirection;
     private Vector3 velocity;              // ใช้เก็บแรงโน้มถ่วง
 
@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 MoveTo;
     private Vector3 Point;
     private Vector3 Move;
+    public bool canMove = true;
 
     public GameObject[] Inventory;
     private int i = 0;
@@ -66,32 +67,12 @@ public class PlayerMovement : MonoBehaviour
             velocity.y = -2f; // รีเซ็ตค่าเวลาติดพื้น
         }
 
-        // ✅ รับ input
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
-        float verticalInput = Input.GetAxisRaw("Vertical");
-
-        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-        moveDirection.Normalize();
-
-        // ✅ เคลื่อนที่
-        if (!IsMoveTo)
-        {
-            Move = moveDirection * moveSpeed * speedMultiplier ;
-            controller.Move(Move * Time.deltaTime);
+        //  Player Movement
+        if (controller != null) 
+        { 
+            MoveCharacter();
         }
-        else if (IsMoveTo)
-        {
-            MoveTo = (Point - transform.position);
-            MoveTo.y = 0f;
-            MoveTo.Normalize();
-            controller.Move(MoveTo * moveSpeed * speedMultiplier * Time.deltaTime);
-            print(Point + "" + transform.position);
-            if (Point.x - transform.position.x < 0.02f && Point.z - transform.position.z < 0.02f && Point.x - transform.position.x > -0.02f && Point.z - transform.position.z > -0.02f)
-            {
-                print("Stop");
-                IsMoveTo = false;
-            }
-        }
+
 
         // ✅ กดนั่ง (Crouch)
         if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
@@ -118,10 +99,43 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // ✅ ใช้แรงโน้มถ่วง
-        velocity.y += gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
+        
     }
 
+    public void MoveCharacter()
+    {
+        // ✅ รับ input
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        float verticalInput = Input.GetAxisRaw("Vertical");
+
+        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        moveDirection.Normalize();
+
+        // ✅ เคลื่อนที่
+        if (!IsMoveTo)
+        {
+            Move = moveDirection * moveSpeed * speedMultiplier;
+            if(canMove){ controller.Move(Move * Time.deltaTime); }
+        }
+        else if (IsMoveTo && canMove)
+        {
+            MoveTo = (Point - transform.position);
+            MoveTo.y = 0f;
+            MoveTo.Normalize();
+            controller.Move(MoveTo * moveSpeed * speedMultiplier * Time.deltaTime);
+            print(Point + "" + transform.position);
+            if (Point.x - transform.position.x < 0.02f && Point.z - transform.position.z < 0.02f && Point.x - transform.position.x > -0.02f && Point.z - transform.position.z > -0.02f)
+            {
+                print("Stop");
+                IsMoveTo = false;
+            }
+        }
+        if (canMove)
+        {
+            velocity.y += gravity * Time.deltaTime;
+            controller.Move(velocity * Time.deltaTime);
+        }
+    }
     public void MoveToPoint(Vector3 PointToGo) 
     {
         IsMoveTo = true;
