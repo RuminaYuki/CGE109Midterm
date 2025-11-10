@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 Point;
     private Vector3 Move;
     public bool canMove = true;
+    public bool canRun = true;
 
     public GameObject[] Inventory;
     private int i = 0;
@@ -87,7 +88,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // ✅ กดวิ่ง (Sprint)
-        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift) )&& canRun)
         {
             speedMultiplier = 2f;
         }

@@ -1,15 +1,11 @@
-using System.Drawing;
-using Unity.VisualScripting;
-using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.InputSystem.XR;
-using UnityEngine.Rendering;
+Ôªøusing UnityEngine;
 
 public class PushableObject : MonoBehaviour
 {
     [SerializeField] private GameObject Player;
     [SerializeField] private PlayerMovement PlayerMoveMentScript;
     [SerializeField] public GameObject PushPoint;
+    [SerializeField] private LayerMask wallMask; // ‡πÄ‡∏û‡∏¥‡πà‡∏°‡∏™‡∏≥‡∏´‡∏£‡∏±‡∏ö‡∏ï‡∏£‡∏ß‡∏à‡∏ß‡πà‡∏≤‡∏Ç‡πâ‡∏≤‡∏á‡∏´‡∏ô‡πâ‡∏≤‡∏°‡∏µ‡∏Å‡∏≥‡πÅ‡∏û‡∏á‡πÑ‡∏´‡∏°
 
     private CharacterController CharacterController;
     private Rigidbody Rigidbody;
@@ -17,8 +13,8 @@ public class PushableObject : MonoBehaviour
     public bool StartActivate = false;
     public bool IsPush = false;
 
-    public float gravity = -9.81f;
-    private Vector3 velocity;
+    public float pushSpeed = 2.5f;
+    public float checkDistance = 0.6f;
 
     private bool _conditionBool;
     public bool ConditionBool
@@ -26,7 +22,7 @@ public class PushableObject : MonoBehaviour
         get => _conditionBool;
         set
         {
-            if (_conditionBool == value) return; // ∂È“‰¡Ë‡ª≈’Ë¬π ‰¡Ë∑”Õ–‰√
+            if (_conditionBool == value) return;
 
             _conditionBool = value;
 
@@ -36,100 +32,102 @@ public class PushableObject : MonoBehaviour
             }
             else
             {
-                // UnParent(Player.transform); // ∂Ÿ°¬È“¬‰ªÕ¬ŸË„π StopPush()
-
                 StartActivate = false;
-                StopPush(); // ‡√’¬° StopPush() ·∑π ‡æ◊ËÕ®—¥°“√∑—ÈßÀ¡¥„πø—ß°Ï™—π‡¥’¬«
+                StopPush();
             }
         }
     }
+
     private void Awake()
     {
-        //PlayerMoveMentScript = Player.GetComponent<PlayerMovement>();
         CharacterController = Player.GetComponent<CharacterController>();
         Rigidbody = GetComponent<Rigidbody>();
 
-        // **·°È‰¢ #1:** µ—Èß Rigidbody ‡ªÁπ IsKinematic ‡æ◊ËÕ„ÀÈ§«∫§ÿ¡¥È«¬ Transform ‰¥ÈßË“¬¢÷Èπ
+        // ‚úÖ ‡πÉ‡∏´‡πâ Rigidbody ‡πÑ‡∏°‡πà‡πÄ‡∏õ‡πá‡∏ô Kinematic ‡πÄ‡∏û‡∏∑‡πà‡∏≠‡πÉ‡∏´‡πâ‡∏ä‡∏ô‡∏Å‡∏≥‡πÅ‡∏û‡∏á‡πÑ‡∏î‡πâ
         if (Rigidbody != null)
         {
-            Rigidbody.isKinematic = true;
+            Rigidbody.isKinematic = false;
+            Rigidbody.constraints = RigidbodyConstraints.FreezeRotation; // ‡∏Å‡∏±‡∏ô‡∏•‡πâ‡∏°
         }
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        if (PlayerMoveMentScript.GetIsMoveTo() == false && StartActivate)
+        if (!StartActivate) return;
+
+        // ‡∏ñ‡πâ‡∏≤ Player ‡πÑ‡∏õ‡∏ñ‡∏∂‡∏á‡∏à‡∏∏‡∏î Push ‡πÅ‡∏•‡πâ‡∏ß
+        if (!PlayerMoveMentScript.GetIsMoveTo())
         {
             IsPush = true;
-            if (PlayerMoveMentScript.canMove) { PlayerGoToChild(); }
+            if (PlayerMoveMentScript.canMove)
+                PlayerGoToChild();
+
             if (IsPush)
             {
-                // **·°È‰¢ #2:** „™È transform.position ·∑π Rigidbody.MovePosition
-                // ‡æ◊ËÕÀ≈’°‡≈’Ë¬ß§«“¡¢—¥·¬Èß¢Õßø‘ ‘° Ï°—∫ CharacterController ¢Õß Player
-                transform.position += PlayerMoveMentScript.GetMoveMent() * Time.fixedDeltaTime;
+                Vector3 moveDir = PlayerMoveMentScript.GetMoveMent();
 
-                // transform.SetParent(Player.transform, true); // (‚§È¥‡¥‘¡∑’Ë∂Ÿ°§Õ¡‡¡πµÏ)
-                // CharacterController.Move(PlayerMoveMentScript.GetMoveMent()); // (‚§È¥‡¥‘¡∑’Ë∂Ÿ°§Õ¡‡¡πµÏ)
-                // Rigidbody.MovePosition(transform.position + PlayerMoveMentScript.GetMoveMent() * Time.deltaTime); // (‚§È¥‡¥‘¡)
-                // Rigidbody.AddForce(PlayerMoveMentScript.GetMoveMent() * 2, ForceMode.Force); // (‚§È¥‡¥‘¡∑’Ë∂Ÿ°§Õ¡‡¡πµÏ)
+                // ‚úÖ ‡∏ï‡∏£‡∏ß‡∏à‡∏ß‡πà‡∏≤‡∏î‡πâ‡∏≤‡∏ô‡∏´‡∏ô‡πâ‡∏≤‡∏°‡∏µ‡∏Å‡∏≥‡πÅ‡∏û‡∏á‡πÑ‡∏´‡∏°‡∏Å‡πà‡∏≠‡∏ô‡πÄ‡∏Ç‡πá‡∏ô
+                if (!IsWallAhead(moveDir))
+                {
+                    Vector3 newPos = Rigidbody.position + moveDir * pushSpeed * Time.fixedDeltaTime;
+                    Rigidbody.MovePosition(newPos);
+                }
+                else
+                {
+                    // ‡∏ñ‡πâ‡∏≤‡∏°‡∏µ‡∏Å‡∏≥‡πÅ‡∏û‡∏á ‡πÉ‡∏´‡πâ‡∏´‡∏¢‡∏∏‡∏î‡∏Ç‡∏¢‡∏±‡∏ö
+                    StopPush();
+                }
             }
 
-            // **·°È‰¢ #3:** ª√—∫ª√ÿß‡ß◊ËÕπ‰¢°“√À¬ÿ¥„ÀÈßË“¬¢÷Èπ·≈–¬È“¬‰ª Update/„™È FixedUpdate ‰¥È ·µË„™È Mathf.Abs
-            // ‡π◊ËÕß®“°‡ß◊ËÕπ‰¢‡¥‘¡´—∫´ÈÕπ‡°‘π‰ª ·≈–¡—°‡°‘¥ª—≠À“ Floating Point Errors
+            // ‡∏ñ‡πâ‡∏≤ Player ‡∏´‡∏•‡∏∏‡∏î‡∏à‡∏≤‡∏Å PushPoint ‡∏°‡∏≤‡∏Å‡πÄ‡∏Å‡∏¥‡∏ô‡πÑ‡∏õ ‡πÉ‡∏´‡πâ‡∏´‡∏¢‡∏∏‡∏î‡πÄ‡∏Ç‡πá‡∏ô
             float dx = PushPoint.transform.position.x - Player.transform.position.x;
             float dz = PushPoint.transform.position.z - Player.transform.position.z;
-
-            if (Mathf.Abs(dx) > 0.1f || Mathf.Abs(dz) > 0.1f) // 0.1f ‡ªÁπ§Ë“ Tolerance
+            if (Mathf.Abs(dx) > 0.2f || Mathf.Abs(dz) > 0.2f)
             {
                 StopPush();
             }
-
-            return;
-            /*velocity.y += gravity * Time.deltaTime;
-            CharacterController.Move(velocity * Time.deltaTime);*/
         }
-
     }
+
+    private bool IsWallAhead(Vector3 dir)
+    {
+        // ‚úÖ ‡∏¢‡∏¥‡∏á Raycast ‡∏à‡∏≤‡∏Å‡∏ï‡∏±‡∏ß object ‡πÑ‡∏õ‡∏Ç‡πâ‡∏≤‡∏á‡∏´‡∏ô‡πâ‡∏≤ ‡πÄ‡∏û‡∏∑‡πà‡∏≠‡∏ï‡∏£‡∏ß‡∏à‡∏ß‡πà‡∏≤‡∏ä‡∏ô‡∏Å‡∏≥‡πÅ‡∏û‡∏á‡∏´‡∏£‡∏∑‡∏≠‡∏¢‡∏±‡∏á
+        return Physics.Raycast(transform.position + Vector3.up * 0.5f, dir.normalized, checkDistance, wallMask);
+    }
+
     public void PlayerGoToChild()
     {
         PlayerMoveMentScript.canMove = false;
 
-        // **·°È‰¢ #4:** ª‘¥ CharacterController ‡¡◊ËÕ‡ªÁπ Child
         if (CharacterController != null)
-        {
             CharacterController.enabled = false;
-        }
 
         Player.transform.SetParent(transform, true);
-        //PlayerMoveMentScript.enabled = false; // (‚§È¥‡¥‘¡∑’Ë∂Ÿ°§Õ¡‡¡πµÏ)
-        //CharacterController.enabled = false; // (‚§È¥‡¥‘¡∑’Ë∂Ÿ°§Õ¡‡¡πµÏ)
     }
 
     public void UnParent(Transform player)
     {
-        // **·°È‰¢ #5:** ‡ª‘¥ CharacterController °≈—∫¡“‡¡◊ËÕ¬°‡≈‘°°“√‡ªÁπ Child
         if (CharacterController != null)
-        {
             CharacterController.enabled = true;
-        }
 
-        //CharacterController.enabled = true; // (‚§È¥‡¥‘¡∑’Ë∂Ÿ°§Õ¡‡¡πµÏ)
         player.SetParent(null);
-        //PlayerMoveMentScript.enabled = true; // (‚§È¥‡¥‘¡∑’Ë∂Ÿ°§Õ¡‡¡πµÏ)
         PlayerMoveMentScript.canMove = true;
     }
+
     public void StartPush(Transform GamePushPoint)
     {
         PushPoint.transform.position = GamePushPoint.transform.position;
-        //PushPoint.transform.position = GetPushPoint.transform.position;
         PlayerMoveMentScript.MoveToPoint(PushPoint.transform.position);
         ConditionBool = true;
+        PlayerMoveMentScript.canRun = false;
     }
+
     public void StopPush()
     {
         ConditionBool = false;
         IsPush = false;
         PlayerMoveMentScript.IsMoveTo = false;
         UnParent(Player.transform);
+        PlayerMoveMentScript.canRun = true;
     }
 }
