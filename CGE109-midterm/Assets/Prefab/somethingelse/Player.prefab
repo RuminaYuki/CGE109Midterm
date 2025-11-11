@@ -64,6 +64,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9076777015100961563}
+  - {fileID: 4398667832108143690}
   m_Father: {fileID: 3966890668998040701}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &6694656986189368257
@@ -169,6 +170,37 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!1 &1948262724432774964
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4398667832108143690}
+  m_Layer: 9
+  m_Name: HeldPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4398667832108143690
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948262724432774964}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.302, y: -0.38, z: 0.374}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2277013736986721582}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2432287012199450411
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,7 +259,7 @@ Transform:
   m_GameObject: {fileID: 3847930948509148841}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -556,7 +588,7 @@ Transform:
   m_GameObject: {fileID: 7763730072880097221}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.3, y: -6.025, z: -16}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.2, y: 1, z: 1.2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -616,6 +648,7 @@ MonoBehaviour:
   canMove: 1
   canRun: 1
   Inventory: []
+  HeldPosition: {fileID: 4398667832108143690}
   Flashlight: {fileID: 5818081387366741171}
   FlashlightOn: 0
   KeyCard: 0
@@ -655,7 +688,7 @@ MonoBehaviour:
   WhereInInInventory: 0
   PlayerScript: {fileID: 1386913121538987356}
   Camera: {fileID: 1510587166745774737}
-  throwForce: 500
+  throwForce: 800
   heldObj: {fileID: 0}
 --- !u!1 &8401668571166994077
 GameObject:

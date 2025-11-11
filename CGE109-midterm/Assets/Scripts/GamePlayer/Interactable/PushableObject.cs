@@ -47,7 +47,7 @@ public class PushableObject : MonoBehaviour
         if (Rigidbody != null)
         {
             Rigidbody.isKinematic = false;
-            Rigidbody.constraints = RigidbodyConstraints.FreezeRotation; // กันล้ม
+            //Rigidbody.constraints = RigidbodyConstraints.FreezeRotation; // กันล้ม
         }
     }
 
@@ -120,6 +120,7 @@ public class PushableObject : MonoBehaviour
         PlayerMoveMentScript.MoveToPoint(PushPoint.transform.position);
         ConditionBool = true;
         PlayerMoveMentScript.canRun = false;
+        Rigidbody.constraints &= ~RigidbodyConstraints.FreezePosition;
     }
 
     public void StopPush()
@@ -129,5 +130,6 @@ public class PushableObject : MonoBehaviour
         PlayerMoveMentScript.IsMoveTo = false;
         UnParent(Player.transform);
         PlayerMoveMentScript.canRun = true;
+        Rigidbody.constraints = RigidbodyConstraints.FreezeAll;
     }
 }

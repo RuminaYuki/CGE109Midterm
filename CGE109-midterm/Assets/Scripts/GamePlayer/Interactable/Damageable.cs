@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class Damageable : MonoBehaviour
 {
@@ -15,8 +16,16 @@ public class Damageable : MonoBehaviour
                 Particle.transform.parent = null;
                 Particle.transform.localRotation = Quaternion.Euler(-90, 0, 0); ;
                 Particle.SetActive(true);
-                Destroy(this.gameObject, 0.5f);
+                StartCoroutine(DelayedAction(0.7f));
+                
             }
         }
+    }
+
+    IEnumerator DelayedAction(float time)
+    {
+        yield return new WaitForSeconds(time); // Wait for 2 seconds (scaled)
+        Destroy(Particle);
+        Destroy(gameObject);
     }
 }

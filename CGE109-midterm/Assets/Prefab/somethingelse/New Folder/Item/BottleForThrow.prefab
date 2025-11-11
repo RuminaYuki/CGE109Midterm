@@ -5069,6 +5069,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 5406797966197450029}
+    - targetCorrespondingSourceObject: {fileID: 2585368993393561516, guid: 4b81622e0b3f6704f8b726979cea18c2,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6076391471787379719}
     - targetCorrespondingSourceObject: {fileID: 6859180146540155819, guid: 4b81622e0b3f6704f8b726979cea18c2,
         type: 3}
       insertIndex: -1
@@ -5121,6 +5125,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Particle: {fileID: 6987562446888713477}
   MeshObj: {fileID: 5004433342396795779}
+--- !u!114 &6076391471787379719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4153153362672932740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a97b4e3108c0bc4db245f4ab1e8caaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemData:
+    itemName: Bottle
+    itemType: 1
+    itemPrefab: {fileID: 4153153362672932740}
 --- !u!1 &5004433342396795779 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6859180146540155819, guid: 4b81622e0b3f6704f8b726979cea18c2,

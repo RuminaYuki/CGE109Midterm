@@ -1,4 +1,7 @@
-﻿using Gamekit3D;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Gamekit3D;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -32,13 +35,16 @@ public class PlayerMovement : MonoBehaviour
     public bool canMove = true;
     public bool canRun = true;
 
-    public GameObject[] Inventory;
-    private int i = 0;
+    public List<GameObject> Inventory = new List<GameObject>();
+    [SerializeField] private Transform HeldPosition;
+    public GameObject HeldObj;
+    public GameObject CameraHolder;
 
     public GameObject Flashlight;
     public bool FlashlightOn;
     public bool KeyCard;
     public bool KeyCard2;
+
 
     void Awake()
     {
@@ -47,35 +53,23 @@ public class PlayerMovement : MonoBehaviour
         {
             Flashlight.SetActive(false);
         }
-
-        /*if (instance != null && instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        instance = this;
-        DontDestroyOnLoad(gameObject);*/
     }
 
     void Update()
     {
-        // ✅ เช็คชนพื้น + เลเยอร์
         grounded = Physics.CheckSphere(groundCheck.position, groundDistance, environmentMask);
-
+        Debug.Log(velocity.y);
         if (grounded && velocity.y < 0)
         {
-            velocity.y = -2f; // รีเซ็ตค่าเวลาติดพื้น
+            velocity.y = -3f;
+            
         }
 
-        //  Player Movement
-        if (controller != null) 
-        { 
+        if (controller != null)
+        {
             MoveCharacter();
         }
 
-
-        // ✅ กดนั่ง (Crouch)
         if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
         {
             transform.localScale = new Vector3(1f, 0.4f, 1f);
@@ -87,36 +81,31 @@ public class PlayerMovement : MonoBehaviour
             speedMultiplier = 1f;
         }
 
-        // ✅ กดวิ่ง (Sprint)
-        if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift) )&& canRun)
+        if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && canRun)
         {
             speedMultiplier = 2f;
         }
 
-        // ✅ กระโดด
         if (grounded && Input.GetButtonDown("Jump"))
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
 
-        // ✅ ใช้แรงโน้มถ่วง
         
     }
 
     public void MoveCharacter()
     {
-        // ✅ รับ input
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical");
 
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
         moveDirection.Normalize();
 
-        // ✅ เคลื่อนที่
         if (!IsMoveTo)
         {
             Move = moveDirection * moveSpeed * speedMultiplier;
-            if(canMove){ controller.Move(Move * Time.deltaTime); }
+            if (canMove) { controller.Move(Move * Time.deltaTime); }
         }
         else if (IsMoveTo && canMove)
         {
@@ -137,7 +126,7 @@ public class PlayerMovement : MonoBehaviour
             controller.Move(velocity * Time.deltaTime);
         }
     }
-    public void MoveToPoint(Vector3 PointToGo) 
+    public void MoveToPoint(Vector3 PointToGo)
     {
         IsMoveTo = true;
         Point = PointToGo;
@@ -147,7 +136,7 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log(MoveTo);
     }
 
-    public Vector3 GetMoveMent() 
+    public Vector3 GetMoveMent()
     {
         return Move;
     }
@@ -156,27 +145,55 @@ public class PlayerMovement : MonoBehaviour
     {
         return IsMoveTo;
     }
-    
-    public void AddToInventory(GameObject pickUpObj)
+
+    public bool AddToInventory(GameObject pickUpObj)
     {
-        bool AddSup = false;
-        i = 0;
-        while (AddSup)
+        ItemPickUp IPU = pickUpObj.GetComponent<ItemPickUp>();
+        if (IPU.ItemData.itemType == ItemType.Normal)
         {
-            if (Inventory[i] == null)
+            if (!Inventory.Contains(pickUpObj))
             {
-                Inventory[i] = pickUpObj;
-                AddSup = true;
-                Debug.Log(Inventory);
-                return;
+                Inventory.Add(pickUpObj);
+                if (pickUpObj.name == "FlashLight") SetFlashlight();
+                if (pickUpObj.name == "KeyCard 1") SetKeyCard();
+                if (pickUpObj.name == "KeyCard2") SetKeyCard2();
+                return false;
             }
-            i++;
         }
+
+
+        if (!Inventory.Contains(pickUpObj))
+        {
+            Inventory.Add(pickUpObj);
+            HeldObj = GameObject.Instantiate(pickUpObj, HeldPosition.transform.position, CameraHolder.transform.rotation);
+            Rigidbody rb = HeldObj.GetComponent<Rigidbody>();
+            rb.isKinematic = false;
+            rb.useGravity = false;
+            rb.constraints = RigidbodyConstraints.FreezeRotationZ |
+                             RigidbodyConstraints.FreezeRotationX |
+                             RigidbodyConstraints.FreezeRotationY |
+                             RigidbodyConstraints.FreezePositionX |
+                             RigidbodyConstraints.FreezePositionY |
+                             RigidbodyConstraints.FreezePosition;
+            HeldObj.transform.SetParent(HeldPosition);
+            return true;
+        }
+        return false;
     }
 
-    public int GetNumItemInInventory() 
+    public bool RemoveToInventory(GameObject pickUpObj)
     {
-        return i;
+
+        if (Inventory.Contains(pickUpObj))
+        {
+            Inventory.Remove(pickUpObj);
+            if (HeldObj != null)
+            {
+                Destroy(HeldObj);
+            }
+            return true;
+        }
+        return false;
     }
 
     public void SetFlashlight()

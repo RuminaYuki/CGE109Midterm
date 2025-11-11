@@ -72,7 +72,6 @@ public class InteractableShowLabel : MonoBehaviour
                 if (Item != null && ItemForThrow && _pickUpScript != null)
                 {
                     _pickUpScript.PickUpObject(Item);
-                    //print("Hi");
                     return;
                 }
                 if (IsItem) 
@@ -81,27 +80,12 @@ public class InteractableShowLabel : MonoBehaviour
                     {
                         bgsScript.OnTriggerEnter(ColliderObj);
                     }
-                    if (!PlayerMovementScript.FlashlightOn)
+                    if (PlayerMovementScript != null)
                     {
-                        PlayerMovementScript.SetFlashlight();
+                        PlayerMovementScript.AddToInventory(Item);
                         DestroyAfterActivate();
                         return;
                     }
-                    if (!PlayerMovementScript.KeyCard)
-                    {
-                        //Debug.Log("Pick up item!!");
-                        PlayerMovementScript.SetKeyCard();
-                        DestroyAfterActivate();
-                        return;
-                    }
-                    if (!PlayerMovementScript.KeyCard2)
-                    {
-                        //Debug.Log("Pick up item!!");
-                        PlayerMovementScript.SetKeyCard2();
-                        DestroyAfterActivate();
-                        return;
-                    }
-                    
                 } 
                 if (SimpleTranslatorControllerScript != null) 
                 {
@@ -157,7 +141,7 @@ public class InteractableShowLabel : MonoBehaviour
                     }
                 }
                 
-                Debug.Log("Nothing");
+                Debug.Log("Nothing" + IsItem);
                 return;
             }
         }
