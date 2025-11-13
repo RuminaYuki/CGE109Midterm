@@ -4,6 +4,7 @@ public class PushableObject : MonoBehaviour
 {
     [SerializeField] private GameObject Player;
     [SerializeField] private PlayerMovement PlayerMoveMentScript;
+    [SerializeField] private Collider PlayerCollider;
     [SerializeField] public GameObject PushPoint;
     [SerializeField] private LayerMask wallMask; // เพิ่มสำหรับตรวจว่าข้างหน้ามีกำแพงไหม
 
@@ -42,6 +43,7 @@ public class PushableObject : MonoBehaviour
     {
         CharacterController = Player.GetComponent<CharacterController>();
         Rigidbody = GetComponent<Rigidbody>();
+        PlayerCollider.enabled = false;
 
         // ✅ ให้ Rigidbody ไม่เป็น Kinematic เพื่อให้ชนกำแพงได้
         if (Rigidbody != null)
@@ -116,6 +118,7 @@ public class PushableObject : MonoBehaviour
 
     public void StartPush(Transform GamePushPoint)
     {
+        PlayerCollider.enabled = true;
         PushPoint.transform.position = GamePushPoint.transform.position;
         PlayerMoveMentScript.MoveToPoint(PushPoint.transform.position);
         ConditionBool = true;
@@ -125,6 +128,7 @@ public class PushableObject : MonoBehaviour
 
     public void StopPush()
     {
+        PlayerCollider.enabled = false;
         ConditionBool = false;
         IsPush = false;
         PlayerMoveMentScript.IsMoveTo = false;
