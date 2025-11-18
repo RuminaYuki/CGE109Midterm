@@ -45,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
     public bool KeyCard;
     public bool KeyCard2;
 
-
+    public bool useMoveCharacter = true;
     void Awake()
     {
         controller = GetComponent<CharacterController>();
@@ -58,14 +58,13 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         grounded = Physics.CheckSphere(groundCheck.position, groundDistance, environmentMask);
-        Debug.Log(velocity.y);
         if (grounded && velocity.y < 0)
         {
             velocity.y = -3f;
             
         }
 
-        if (controller != null)
+        if (controller != null && useMoveCharacter)
         {
             MoveCharacter();
         }
@@ -86,10 +85,10 @@ public class PlayerMovement : MonoBehaviour
             speedMultiplier = 2f;
         }
 
-        if (grounded && Input.GetButtonDown("Jump"))
+        /*if (grounded && Input.GetButtonDown("Jump"))
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-        }
+        }*/
 
         
     }
@@ -113,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
             MoveTo.y = 0f;
             MoveTo.Normalize();
             controller.Move(MoveTo * moveSpeed * speedMultiplier * Time.deltaTime);
-            print(Point + "" + transform.position);
+            //print(Point + "" + transform.position);
             if (Point.x - transform.position.x < 0.02f && Point.z - transform.position.z < 0.02f && Point.x - transform.position.x > -0.02f && Point.z - transform.position.z > -0.02f)
             {
                 print("Stop");
@@ -126,6 +125,12 @@ public class PlayerMovement : MonoBehaviour
             controller.Move(velocity * Time.deltaTime);
         }
     }
+
+    public void useGravity()
+    {
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
+    }
     public void MoveToPoint(Vector3 PointToGo)
     {
         IsMoveTo = true;
@@ -133,7 +138,7 @@ public class PlayerMovement : MonoBehaviour
         MoveTo = (PointToGo - transform.position);
         MoveTo.y = 0f;
         MoveTo.Normalize();
-        Debug.Log(MoveTo);
+        //Debug.Log(MoveTo);
     }
 
     public Vector3 GetMoveMent()
