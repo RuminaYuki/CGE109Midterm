@@ -170,8 +170,8 @@ public class PlayerMovement : MonoBehaviour
         if (!Inventory.Contains(pickUpObj))
         {
             Inventory.Add(pickUpObj);
-            HeldObj = GameObject.Instantiate(pickUpObj, HeldPosition.transform.position, CameraHolder.transform.rotation);
-            Rigidbody rb = HeldObj.GetComponent<Rigidbody>();
+            HeldObj = GameObject.Instantiate(IPU.ItemData.gameObj, HeldPosition.transform.position, CameraHolder.transform.rotation);
+            /*Rigidbody rb = HeldObj.GetComponent<Rigidbody>();
             rb.isKinematic = false;
             rb.useGravity = false;
             rb.constraints = RigidbodyConstraints.FreezeRotationZ |
@@ -179,7 +179,7 @@ public class PlayerMovement : MonoBehaviour
                              RigidbodyConstraints.FreezeRotationY |
                              RigidbodyConstraints.FreezePositionX |
                              RigidbodyConstraints.FreezePositionY |
-                             RigidbodyConstraints.FreezePosition;
+                             RigidbodyConstraints.FreezePosition;*/
             HeldObj.transform.SetParent(HeldPosition);
             return true;
         }

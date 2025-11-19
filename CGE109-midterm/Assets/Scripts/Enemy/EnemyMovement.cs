@@ -25,7 +25,7 @@ public class EnemyMovement : MonoBehaviour
         if (other.CompareTag("Noise"))
         {
             m_Position = other.transform.position; // สั่งเดินไปยังตำแหน่ง Trigger
-            Debug.Log("Enemy added and moving to trigger");
+            //Debug.Log("Enemy added and moving to trigger");
             
         }
     }

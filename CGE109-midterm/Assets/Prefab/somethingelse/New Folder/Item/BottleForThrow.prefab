@@ -5140,7 +5140,8 @@ MonoBehaviour:
   ItemData:
     itemName: Bottle
     itemType: 1
-    itemPrefab: {fileID: 4153153362672932740}
+    gameObj: {fileID: 4153153362672932740, guid: 3c48634b4739caf40b657cc1cc72fcfd,
+      type: 3}
 --- !u!1 &5004433342396795779 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6859180146540155819, guid: 4b81622e0b3f6704f8b726979cea18c2,
