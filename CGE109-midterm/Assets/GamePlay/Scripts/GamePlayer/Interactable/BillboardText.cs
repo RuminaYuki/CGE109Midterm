@@ -4,6 +4,11 @@ public class BillboardText : MonoBehaviour
 {
     public Camera mainCamera;
 
+    private void Awake()
+    {
+        mainCamera = FindAnyObjectByType<Camera>();
+    }
+
     void LateUpdate()
     {
         transform.LookAt(mainCamera.transform.position);
