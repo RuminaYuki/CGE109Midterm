@@ -4,7 +4,7 @@ using System.Collections;
 
 public class EnemyMovement : MonoBehaviour
 {
-    private NavMeshAgent Agent;
+    public NavMeshAgent Agent;
     public float rotationSpeed = 2f;
     public float moveSpeed = 2f;
 
@@ -20,7 +20,7 @@ public class EnemyMovement : MonoBehaviour
     private Quaternion targetRotation;
 
     public bool isLocking;
-    public SpawnPoint spawnPoint;
+    
 
     private void Awake()
     {
@@ -41,17 +41,6 @@ public class EnemyMovement : MonoBehaviour
             StartCoroutine(LookTarget(other.transform));
             return;
         }
-        if (other.gameObject.CompareTag("Player"))
-        {
-            spawnPoint.GotoSpawnPoint(other.transform);
-            Debug.Log("here");
-        }
-        
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        
-        
     }
 
 

@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class SpawnPoint : MonoBehaviour
 {
+    public MonsterManager monsterManagerScript;
     public Vector3 _spawnPoint;
     private Transform player;
 
@@ -14,6 +15,8 @@ public class SpawnPoint : MonoBehaviour
     public void GotoSpawnPoint(Transform player)
     {
         player.position = _spawnPoint;
+        monsterManagerScript.ResetAllMonsters();
+
     }
 
     public void SetSpawnPoint(Transform spawnpoint)
