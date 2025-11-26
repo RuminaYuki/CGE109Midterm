@@ -1,0 +1,123 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5136702708072979757
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8839821338673904426}
+  m_Layer: 0
+  m_Name: prisoner1Crop1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8839821338673904426
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5136702708072979757}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 21.545, y: -6.507, z: 30.769}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5347796008699949695}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &5601784555510076820
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8839821338673904426}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 8cd0cfdc5af86954485c6e7ec0bb9deb,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8cd0cfdc5af86954485c6e7ec0bb9deb,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8cd0cfdc5af86954485c6e7ec0bb9deb,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8cd0cfdc5af86954485c6e7ec0bb9deb,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.17623797
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8cd0cfdc5af86954485c6e7ec0bb9deb,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8cd0cfdc5af86954485c6e7ec0bb9deb,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.98434764
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8cd0cfdc5af86954485c6e7ec0bb9deb,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8cd0cfdc5af86954485c6e7ec0bb9deb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8cd0cfdc5af86954485c6e7ec0bb9deb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 200.301
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8cd0cfdc5af86954485c6e7ec0bb9deb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5701881130505662564, guid: 8cd0cfdc5af86954485c6e7ec0bb9deb,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 432997b1a9ab36649a51197525152740, type: 2}
+    - target: {fileID: 919132149155446097, guid: 8cd0cfdc5af86954485c6e7ec0bb9deb,
+        type: 3}
+      propertyPath: m_Name
+      value: prisoner1Crop1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2305800283238073104, guid: 8cd0cfdc5af86954485c6e7ec0bb9deb,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 55ef72ce271b4804c9f8a6aab03c342f, type: 2}
+    - target: {fileID: 3596665725768077863, guid: 8cd0cfdc5af86954485c6e7ec0bb9deb,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 24fff70111b57cb4da123e2a58087175, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8cd0cfdc5af86954485c6e7ec0bb9deb, type: 3}
+--- !u!4 &5347796008699949695 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8cd0cfdc5af86954485c6e7ec0bb9deb,
+    type: 3}
+  m_PrefabInstance: {fileID: 5601784555510076820}
+  m_PrefabAsset: {fileID: 0}
