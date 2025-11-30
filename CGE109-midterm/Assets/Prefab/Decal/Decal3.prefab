@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1947908523125144913}
   - component: {fileID: 5247652106336051240}
   m_Layer: 0
-  m_Name: crack3
+  m_Name: Decal3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
