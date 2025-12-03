@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 380281938956212694}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -195,7 +195,7 @@ Transform:
   m_GameObject: {fileID: 1948262724432774964}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.302, y: -0.38, z: 0.374}
+  m_LocalPosition: {x: 0.302, y: -0.38, z: 0.462}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -243,6 +243,7 @@ GameObject:
   - component: {fileID: 3966890668998040701}
   - component: {fileID: 5031018709170592033}
   - component: {fileID: 4835317919887084386}
+  - component: {fileID: 6739728840505441415}
   m_Layer: 0
   m_Name: CameraHolder
   m_TagString: Untagged
@@ -286,14 +287,31 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3847930948509148841}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00ef33e97796cf242b79a096a915d604, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sensitivityX: 2000
   sensitivityY: 2000
-  orientation: {fileID: 7088494775635297460}
+--- !u!114 &6739728840505441415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3847930948509148841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d90ba6530d9bfda47abb4610956b2f44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCamera: {fileID: 6694656986189368257}
+  invertCamera: 0
+  cameraCanMove: 1
+  mouseSensitivity: 7
+  maxLookAngle: 85
+  lockCursor: 1
 --- !u!1 &5818081387366741171
 GameObject:
   m_ObjectHideFlags: 0
@@ -635,7 +653,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2
   groundDrag: 0
-  orientation: {fileID: 7088494775635297460}
+  orientation: {fileID: 3966890668998040701}
   groundCheck: {fileID: 8094873339552988426}
   groundDistance: 0.4
   environmentMask:
@@ -649,10 +667,13 @@ MonoBehaviour:
   canRun: 1
   Inventory: []
   HeldPosition: {fileID: 4398667832108143690}
+  HeldObj: {fileID: 0}
+  CameraHolder: {fileID: 3847930948509148841}
   Flashlight: {fileID: 5818081387366741171}
   FlashlightOn: 0
   KeyCard: 0
   KeyCard2: 0
+  useMoveCharacter: 1
 --- !u!114 &8230958441195427252
 MonoBehaviour:
   m_ObjectHideFlags: 0

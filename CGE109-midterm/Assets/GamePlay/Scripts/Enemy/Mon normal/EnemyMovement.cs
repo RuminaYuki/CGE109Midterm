@@ -4,10 +4,12 @@ using System.Collections;
 
 public class EnemyMovement : MonoBehaviour
 {
+    [Header("NavMeshAgent")]
     public NavMeshAgent Agent;
     public float rotationSpeed = 2f;
     public float moveSpeed = 2f;
 
+    [Header("Detect Player")]
     public bool seePlayer = false;
     public Transform player;
     public Transform raycastTransform;
@@ -20,7 +22,10 @@ public class EnemyMovement : MonoBehaviour
     private Quaternion targetRotation;
 
     public bool isLocking;
-    
+
+    [Header("Animation")]
+    public Animator animator;
+
 
     private void Awake()
     {
@@ -32,6 +37,7 @@ public class EnemyMovement : MonoBehaviour
     private void Update()
     {
         DetectPlayer();
+        animator.SetFloat("Velocity", Agent.velocity.sqrMagnitude);
     }
 
     void OnTriggerEnter(Collider other)
@@ -39,6 +45,7 @@ public class EnemyMovement : MonoBehaviour
         if (other.gameObject.CompareTag("Noise") && !seePlayer)
         {
             StartCoroutine(LookTarget(other.transform));
+            animator.SetTrigger("Is Turn around");
             return;
         }
     }
@@ -89,6 +96,7 @@ public class EnemyMovement : MonoBehaviour
             {
                 if (!Physics.Raycast(raycastTransform.position, directionToPlayer, distanceToPlayer, obstructionMask))
                 {
+                    animator.SetTrigger("Is Turn around");
                     seePlayer = true;
                 }
             }

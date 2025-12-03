@@ -151,7 +151,7 @@ namespace Gamekit3D
             Transform entranceLocation = entrance.transform;
             Transform enteringTransform = entrance.transitioningGameObject.transform;
             enteringTransform.position = entranceLocation.position;
-            enteringTransform.rotation = entranceLocation.rotation;
+            enteringTransform.transform.forward = entranceLocation.transform.forward;
         }
 
         protected void SetupNewScene(TransitionPoint.TransitionType transitionType, SceneTransitionDestination entrance)
