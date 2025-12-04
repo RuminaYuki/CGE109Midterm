@@ -73,11 +73,13 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.localScale = new Vector3(1f, 0.4f, 1f);
             speedMultiplier = 0.75f;
+            canRun = false;
         }
         else
         {
             transform.localScale = new Vector3(1f, 1f, 1f);
             speedMultiplier = 1f;
+            canRun = true;
         }
 
         if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && canRun)
