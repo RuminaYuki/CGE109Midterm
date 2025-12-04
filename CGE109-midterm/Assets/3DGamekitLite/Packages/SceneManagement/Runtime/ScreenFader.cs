@@ -101,7 +101,7 @@ namespace Gamekit3D
 
         public static IEnumerator FadeSceneOut(FadeType fadeType = FadeType.Black)
         {
-            /*CanvasGroup canvasGroup;
+            CanvasGroup canvasGroup;
             switch (fadeType)
             {
                 case FadeType.Black:
@@ -117,7 +117,7 @@ namespace Gamekit3D
 
             canvasGroup.gameObject.SetActive(true);
 
-            yield return Instance.StartCoroutine(Instance.Fade(1f, canvasGroup));*/
+            yield return Instance.StartCoroutine(Instance.Fade(1f, canvasGroup));
         }
     }
 }
