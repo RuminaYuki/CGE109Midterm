@@ -405,7 +405,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1457665471}
         m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
-        m_MethodName: PlayGame
+        m_MethodName: GameStart
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -902,7 +902,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f1bb09a3c26f374684c2e3e6e359c59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneNumber: 1
 --- !u!4 &1457665472
 Transform:
   m_ObjectHideFlags: 0

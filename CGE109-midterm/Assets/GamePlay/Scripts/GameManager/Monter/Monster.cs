@@ -14,6 +14,6 @@ public class Monster : MonoBehaviour
         // Register ตัวเองกับ manager
         MonsterManager.Instance.RegisterMonster(this);
 
-        Debug.Log("Monster registered: " + gameObject.name + " at " + initialPosition);
+        //Debug.Log("Monster registered: " + gameObject.name + " at " + initialPosition);
     }
 }
