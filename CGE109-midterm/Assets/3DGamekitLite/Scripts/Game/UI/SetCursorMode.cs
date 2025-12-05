@@ -12,8 +12,8 @@ namespace Gamekit3D
 
         void Start()
         {
-            Cursor.visible = visible;
-            Cursor.lockState = lockMode;
+            /*Cursor.visible = visible;
+            Cursor.lockState = lockMode;*/
         }
     }
 }

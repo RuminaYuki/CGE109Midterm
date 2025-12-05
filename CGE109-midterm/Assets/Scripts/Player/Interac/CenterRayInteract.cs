@@ -12,11 +12,6 @@ public class CenterRayInteract : MonoBehaviour
 
     public Camera cam;
 
-    void Start()
-    {
-
-    }
-
     void Update()
     {
         DetectNearestInteractable();

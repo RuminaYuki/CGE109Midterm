@@ -61,7 +61,6 @@ public class PlayerMovement : MonoBehaviour
         if (grounded && velocity.y < 0)
         {
             velocity.y = -3f;
-            
         }
 
         if (controller != null && useMoveCharacter)

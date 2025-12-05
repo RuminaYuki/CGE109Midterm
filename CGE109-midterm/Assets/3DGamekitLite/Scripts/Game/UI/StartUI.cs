@@ -73,8 +73,8 @@ namespace Gamekit3D
 
             if (!alwaysDisplayMouse)
             {
-                Cursor.lockState = m_InPause ? CursorLockMode.Locked : CursorLockMode.None;
-                Cursor.visible = !m_InPause;
+                //Cursor.lockState = m_InPause ? CursorLockMode.Locked : CursorLockMode.None;
+                //Cursor.visible = !m_InPause;
             }
 
             for (int i = 0; i < m_Directors.Length; i++)

@@ -30,11 +30,11 @@ EditorBuildSettings:
     path: Assets/GamePlay/TestScene.unity
     guid: c48dc9cb71b61e645845322f4775a6a4
   - enabled: 1
-    path: Assets/GamePlay/End.unity
-    guid: 3bbebf4201e7ba04a85723c97f22a53a
-  - enabled: 1
     path: Assets/GamePlay/TestScene2.unity
     guid: ed6fee70b6b0f8a468ad820200102b3d
+  - enabled: 1
+    path: Assets/GamePlay/End.unity
+    guid: 3bbebf4201e7ba04a85723c97f22a53a
   - enabled: 0
     path: Assets/test2.unity
     guid: f7353d9391085ad48894441b9c2f0752

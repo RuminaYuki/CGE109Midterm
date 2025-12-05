@@ -76,7 +76,7 @@ namespace Gamekit3D
             }
             canvasGroup.alpha = finalAlpha;
             m_IsFading = false;
-            canvasGroup.blocksRaycasts = false;
+            //canvasGroup.blocksRaycasts = false;
         }
 
         public static void SetAlpha(float alpha)

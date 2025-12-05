@@ -25,7 +25,7 @@ public class MonsterManager : MonoBehaviour
         if (!allMonsters.Contains(monster))
         {
             allMonsters.Add(monster);
-            Debug.Log("Registered monster: " + monster.name + " Total: " + allMonsters.Count);
+            //Debug.Log("Registered monster: " + monster.name + " Total: " + allMonsters.Count);
         }
     }
 

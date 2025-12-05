@@ -45,4 +45,5 @@ public class PickUpScript : MonoBehaviour
             heldObj = null;
         }
     }
+
 }
