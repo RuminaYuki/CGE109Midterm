@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
   PlayerMoveMentScript: {fileID: 0}
+  PlayerCollider: {fileID: 0}
   PushPoint: {fileID: 0}
   wallMask:
     serializedVersion: 2
@@ -131,6 +132,11 @@ PrefabInstance:
       propertyPath: m_VersionIndex
       value: 2760
       objectReference: {fileID: 0}
+    - target: {fileID: 8026911200890234802, guid: ee052b28e64204344a0fb95b05df6383,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: b5b68a1a7ea7db94b86644d2cd655974, type: 2}
     - target: {fileID: 8387300394019391079, guid: ee052b28e64204344a0fb95b05df6383,
         type: 3}
       propertyPath: m_Name
