@@ -61,7 +61,6 @@ public class PlayerMovement : MonoBehaviour
         if (grounded && velocity.y < 0)
         {
             velocity.y = -3f;
-            
         }
 
         if (controller != null && useMoveCharacter)
@@ -73,11 +72,13 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.localScale = new Vector3(1f, 0.4f, 1f);
             speedMultiplier = 0.75f;
+            canRun = false;
         }
         else
         {
             transform.localScale = new Vector3(1f, 1f, 1f);
             speedMultiplier = 1f;
+            canRun = true;
         }
 
         if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && canRun)
@@ -170,8 +171,8 @@ public class PlayerMovement : MonoBehaviour
         if (!Inventory.Contains(pickUpObj))
         {
             Inventory.Add(pickUpObj);
-            HeldObj = GameObject.Instantiate(pickUpObj, HeldPosition.transform.position, CameraHolder.transform.rotation);
-            Rigidbody rb = HeldObj.GetComponent<Rigidbody>();
+            HeldObj = GameObject.Instantiate(IPU.ItemData.gameObj, HeldPosition.transform.position, CameraHolder.transform.rotation);
+            /*Rigidbody rb = HeldObj.GetComponent<Rigidbody>();
             rb.isKinematic = false;
             rb.useGravity = false;
             rb.constraints = RigidbodyConstraints.FreezeRotationZ |
@@ -179,7 +180,7 @@ public class PlayerMovement : MonoBehaviour
                              RigidbodyConstraints.FreezeRotationY |
                              RigidbodyConstraints.FreezePositionX |
                              RigidbodyConstraints.FreezePositionY |
-                             RigidbodyConstraints.FreezePosition;
+                             RigidbodyConstraints.FreezePosition;*/
             HeldObj.transform.SetParent(HeldPosition);
             return true;
         }
