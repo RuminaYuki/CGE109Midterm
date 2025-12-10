@@ -83,17 +83,24 @@ public class EnemyMovement : MonoBehaviour
     private void DetectPlayer()
     {
         seePlayer = false;
-        if (!player) return;
+        if (!player)
+        {
+            Debug.Log("!player");
+            return;
+        }
+
 
         Vector3 directionToPlayer = (player.position - raycastTransform.position).normalized;
         float distanceToPlayer = Vector3.Distance(raycastTransform.position, player.position);
 
         if (distanceToPlayer <= detectRadius)
         {
+            Debug.Log("distanceToPlayer <= detectRadius");
             float angle = Vector3.Angle(raycastTransform.forward, directionToPlayer);
 
             if (angle <= detectAngle / 2)
             {
+                Debug.Log("angle <= detectAngle / 2");
                 if (!Physics.Raycast(raycastTransform.position, directionToPlayer, distanceToPlayer, obstructionMask))
                 {
                     animator.SetTrigger("Is Turn around");
