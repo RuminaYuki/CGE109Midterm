@@ -24,7 +24,12 @@ public class SpawnPoint : MonoBehaviour
 
     public void GotoSpawnPoint(Transform player)
     {
-        if (player == null) {return; }
+        Debug.Log("GotoSpawnPoint");
+        if (player == null) 
+        {
+            Debug.Log("player == null");
+            return; 
+        }
         Cursor.lockState = CursorLockMode.None;
         StartCoroutine(ResetToSpawn(player));
     }
@@ -53,6 +58,7 @@ public class SpawnPoint : MonoBehaviour
 
     public IEnumerator ResetToSpawn(Transform player)
     {
+        Debug.Log("ResetToSpawn");
         yield return StartCoroutine(ScreenFader.FadeSceneOut(ScreenFader.FadeType.GameOver));
         PlayerMovementScript.canMove = false;
         player.transform.position = _spawnPoint;

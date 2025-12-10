@@ -9,8 +9,10 @@ public class MonsterDamage : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
+        Debug.Log("TriggerEnter");
         if (other.gameObject.CompareTag("Player"))
         {
+            Debug.Log("if (other.gameObject.CompareTag(\"Player\"))");
             spawnPoint.GotoSpawnPoint(other.transform);
         }
 
