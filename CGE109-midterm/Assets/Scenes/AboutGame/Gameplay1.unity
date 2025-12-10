@@ -9716,6 +9716,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: MainCamera
       objectReference: {fileID: 0}
+    - target: {fileID: 4835317919887084386, guid: 7758fae54999aa345b7a23ae49759e38,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6447763927041688126, guid: 7758fae54999aa345b7a23ae49759e38,
         type: 3}
       propertyPath: m_TagString
@@ -9788,6 +9793,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1559456762}
+    - targetCorrespondingSourceObject: {fileID: 3847930948509148841, guid: 7758fae54999aa345b7a23ae49759e38,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1847653572}
   m_SourcePrefab: {fileID: 100100000, guid: 7758fae54999aa345b7a23ae49759e38, type: 3}
 --- !u!1001 &308782377
 PrefabInstance:
@@ -21030,6 +21039,11 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 1559456751}
+    - target: {fileID: 329770215812364157, guid: 054af20ca4e2cd74a9da8fd5350ac6c4,
+        type: 3}
+      propertyPath: PlayerCollider
+      value: 
+      objectReference: {fileID: 2122458143}
     - target: {fileID: 329770215812364157, guid: 054af20ca4e2cd74a9da8fd5350ac6c4,
         type: 3}
       propertyPath: PlayerMoveMentScript
@@ -41765,6 +41779,21 @@ PrefabInstance:
       propertyPath: m_VersionIndex
       value: 2781
       objectReference: {fileID: 0}
+    - target: {fileID: 329770215812364157, guid: 054af20ca4e2cd74a9da8fd5350ac6c4,
+        type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1559456751}
+    - target: {fileID: 329770215812364157, guid: 054af20ca4e2cd74a9da8fd5350ac6c4,
+        type: 3}
+      propertyPath: PlayerCollider
+      value: 
+      objectReference: {fileID: 2122458143}
+    - target: {fileID: 329770215812364157, guid: 054af20ca4e2cd74a9da8fd5350ac6c4,
+        type: 3}
+      propertyPath: PlayerMoveMentScript
+      value: 
+      objectReference: {fileID: 1559456752}
     - target: {fileID: 625921937924395866, guid: 054af20ca4e2cd74a9da8fd5350ac6c4,
         type: 3}
       propertyPath: m_Mesh
@@ -47315,6 +47344,21 @@ PrefabInstance:
       propertyPath: m_VersionIndex
       value: 2778
       objectReference: {fileID: 0}
+    - target: {fileID: 329770215812364157, guid: 054af20ca4e2cd74a9da8fd5350ac6c4,
+        type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1559456751}
+    - target: {fileID: 329770215812364157, guid: 054af20ca4e2cd74a9da8fd5350ac6c4,
+        type: 3}
+      propertyPath: PlayerCollider
+      value: 
+      objectReference: {fileID: 2122458143}
+    - target: {fileID: 329770215812364157, guid: 054af20ca4e2cd74a9da8fd5350ac6c4,
+        type: 3}
+      propertyPath: PlayerMoveMentScript
+      value: 
+      objectReference: {fileID: 1559456752}
     - target: {fileID: 625921937924395866, guid: 054af20ca4e2cd74a9da8fd5350ac6c4,
         type: 3}
       propertyPath: m_Mesh
@@ -47745,6 +47789,30 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 8274289009713299047}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1847653570 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3847930948509148841, guid: 7758fae54999aa345b7a23ae49759e38,
+    type: 3}
+  m_PrefabInstance: {fileID: 303521753}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1847653572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847653570}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98b6336b74f6fa64bb63e91597d1da1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCamera: {fileID: 461776913}
+  invertCamera: 0
+  cameraCanMove: 1
+  mouseSensitivity: 5
+  maxLookAngle: 50
+  lockCursor: 1
 --- !u!1001 &1849131551
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54914,6 +54982,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5681186977554409393, guid: b9b9e00ba6d5dc346bc3f93782c76a97,
     type: 3}
   m_PrefabInstance: {fileID: 1031476016}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &2122458143 stripped
+MeshCollider:
+  m_CorrespondingSourceObject: {fileID: 76352247221878903, guid: 7758fae54999aa345b7a23ae49759e38,
+    type: 3}
+  m_PrefabInstance: {fileID: 303521753}
   m_PrefabAsset: {fileID: 0}
 --- !u!43 &2122825073
 Mesh:
