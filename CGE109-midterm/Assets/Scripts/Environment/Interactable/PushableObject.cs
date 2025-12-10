@@ -41,25 +41,6 @@ public class PushableObject : MonoBehaviour
 
     private void Awake()
     {
-        // หา Player อัตโนมัติ
-        if (Player == null)
-            Player = GameObject.FindGameObjectWithTag("Player");
-
-        // หา PlayerMovement อัตโนมัติ
-        if (PlayerMoveMentScript == null && Player != null)
-            PlayerMoveMentScript = Player.GetComponent<PlayerMovement>();
-
-        // หา CharacterController อัตโนมัติ
-        if (CharacterController == null && Player != null)
-            CharacterController = Player.GetComponent<CharacterController>();
-
-        // หา Collider ของ PlayerMesh อัตโนมัติ
-        if (PlayerCollider == null && Player != null)
-        {
-            GameObject collider = GameObject.FindGameObjectWithTag("PlayerCollider");
-            PlayerCollider = collider.GetComponent<Collider>();
-        }
-
         CharacterController = Player.GetComponent<CharacterController>();
         Rigidbody = GetComponent<Rigidbody>();
         PlayerCollider.enabled = false;
