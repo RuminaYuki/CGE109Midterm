@@ -203,7 +203,7 @@ MonoBehaviour:
   raycastTransform: {fileID: 5560990385839636299}
   obstructionMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 65536
   detectRadius: 5
   detectAngle: 60
   isLocking: 0

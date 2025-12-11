@@ -18,7 +18,7 @@ public class SpawnPoint : MonoBehaviour
         {
             PlayerMovementScript = player.GetComponent<PlayerMovement>();
         }
-        _spawnPoint = player.transform.position;
+        //_spawnPoint = player.transform.position;
         DontDestroyOnLoad(gameObject);
     }
 
@@ -36,7 +36,7 @@ public class SpawnPoint : MonoBehaviour
 
 
     //Reset
-    private bool continued = false;
+    public bool continued = false;
     private string continuedType;
     public void SetType_continued(string type)
     {

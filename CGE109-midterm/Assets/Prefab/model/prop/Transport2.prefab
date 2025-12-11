@@ -203,8 +203,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.5476642, y: -0.5381185, z: 1.9342631}
-  m_LocalScale: {x: 100, y: 100, z: 100}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2014720455360692845}
   - {fileID: 1570073694551527431}
@@ -399,7 +399,7 @@ PrefabInstance:
     - target: {fileID: 2102021730941017939, guid: 5ee7e41385a63974f9c99d8e33a0e99f,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 2766
+      value: 2772
       objectReference: {fileID: 0}
     - target: {fileID: 4527463350560208504, guid: 5ee7e41385a63974f9c99d8e33a0e99f,
         type: 3}
@@ -560,7 +560,7 @@ PrefabInstance:
     - target: {fileID: 2102021730941017939, guid: 5ee7e41385a63974f9c99d8e33a0e99f,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 2766
+      value: 2772
       objectReference: {fileID: 0}
     - target: {fileID: 4527463350560208504, guid: 5ee7e41385a63974f9c99d8e33a0e99f,
         type: 3}
@@ -726,12 +726,12 @@ PrefabInstance:
     - target: {fileID: 153536329025752276, guid: ee052b28e64204344a0fb95b05df6383,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 2778
+      value: 2784
       objectReference: {fileID: 0}
     - target: {fileID: 552977626241000659, guid: ee052b28e64204344a0fb95b05df6383,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 2778
+      value: 2784
       objectReference: {fileID: 0}
     - target: {fileID: 862425071695303361, guid: ee052b28e64204344a0fb95b05df6383,
         type: 3}
@@ -751,7 +751,7 @@ PrefabInstance:
     - target: {fileID: 2884790058401119210, guid: ee052b28e64204344a0fb95b05df6383,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 2778
+      value: 2784
       objectReference: {fileID: 0}
     - target: {fileID: 3255734965941904165, guid: ee052b28e64204344a0fb95b05df6383,
         type: 3}
@@ -771,7 +771,7 @@ PrefabInstance:
     - target: {fileID: 7211690122310160653, guid: ee052b28e64204344a0fb95b05df6383,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 2778
+      value: 2784
       objectReference: {fileID: 0}
     - target: {fileID: 8387300394019391079, guid: ee052b28e64204344a0fb95b05df6383,
         type: 3}

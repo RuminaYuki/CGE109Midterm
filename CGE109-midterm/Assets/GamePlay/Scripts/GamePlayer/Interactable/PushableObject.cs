@@ -41,9 +41,11 @@ public class PushableObject : MonoBehaviour
 
     private void Awake()
     {
+        Player = GameObject.FindGameObjectWithTag("Player");
+        PlayerMoveMentScript = Player.GetComponent<PlayerMovement>();
         CharacterController = Player.GetComponent<CharacterController>();
         Rigidbody = GetComponent<Rigidbody>();
-        PlayerCollider.enabled = false;
+        //PlayerCollider.enabled = false;
 
         // ✅ ให้ Rigidbody ไม่เป็น Kinematic เพื่อให้ชนกำแพงได้
         if (Rigidbody != null)

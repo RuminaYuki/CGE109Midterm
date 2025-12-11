@@ -148,14 +148,14 @@ public class InteractableShowLabel : MonoBehaviour
                 if (PushableObjectScript.IsPush == false)
                 {
                     PushableObjectScript.PushPoint = this.gameObject;
-                    print("here " + PushableObjectScript.StartActivate);
+                    //print("here " + PushableObjectScript.StartActivate);
                     PushableObjectScript.StartPush(PushPoint);
                         
                     return;
                 }
                 if (PushableObjectScript.StartActivate == true)
                 {
-                    print("Stop");
+                    //print("Stop");
                     PushableObjectScript.StopPush();
                     return;
                 }
