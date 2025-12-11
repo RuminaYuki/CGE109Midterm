@@ -8,7 +8,7 @@ namespace Gamekit3D
     {
         public enum FadeType
         {
-            Black, Loading, GameOver,
+            Black, Loading, GameOver, PauseGame,
         }
 
         public static ScreenFader Instance
@@ -46,6 +46,7 @@ namespace Gamekit3D
         public CanvasGroup faderCanvasGroup;
         public CanvasGroup loadingCanvasGroup;
         public CanvasGroup gameOverCanvasGroup;
+        public CanvasGroup PauseGameCanvasGroup;
         public float fadeDuration = 1f;
 
         protected bool m_IsFading;
@@ -63,20 +64,29 @@ namespace Gamekit3D
             DontDestroyOnLoad(gameObject);
         }
 
+        // ==========================================================
+        //  ✔ Fade แบบ unscaled time (ทำงานแม้ timeScale = 0)
+        // ==========================================================
         protected IEnumerator Fade(float finalAlpha, CanvasGroup canvasGroup)
         {
             m_IsFading = true;
             canvasGroup.blocksRaycasts = true;
-            float fadeSpeed = Mathf.Abs(canvasGroup.alpha - finalAlpha) / fadeDuration;
-            while (!Mathf.Approximately(canvasGroup.alpha, finalAlpha))
+
+            float startAlpha = canvasGroup.alpha;
+            float time = 0f;
+
+            while (time < fadeDuration)
             {
-                canvasGroup.alpha = Mathf.MoveTowards(canvasGroup.alpha, finalAlpha,
-                    fadeSpeed * Time.deltaTime);
+                time += Time.unscaledDeltaTime;      // <<< แก้ตรงนี้
+                float t = time / fadeDuration;
+
+                canvasGroup.alpha = Mathf.Lerp(startAlpha, finalAlpha, t);
+
                 yield return null;
             }
+
             canvasGroup.alpha = finalAlpha;
             m_IsFading = false;
-            canvasGroup.blocksRaycasts = false;
         }
 
         public static void SetAlpha(float alpha)
@@ -87,10 +97,13 @@ namespace Gamekit3D
         public static IEnumerator FadeSceneIn()
         {
             CanvasGroup canvasGroup;
+
             if (Instance.faderCanvasGroup.alpha > 0.1f)
                 canvasGroup = Instance.faderCanvasGroup;
             else if (Instance.gameOverCanvasGroup.alpha > 0.1f)
                 canvasGroup = Instance.gameOverCanvasGroup;
+            else if (Instance.PauseGameCanvasGroup.alpha > 0.1f)
+                canvasGroup = Instance.PauseGameCanvasGroup;
             else
                 canvasGroup = Instance.loadingCanvasGroup;
 
@@ -102,6 +115,7 @@ namespace Gamekit3D
         public static IEnumerator FadeSceneOut(FadeType fadeType = FadeType.Black)
         {
             CanvasGroup canvasGroup;
+
             switch (fadeType)
             {
                 case FadeType.Black:
@@ -109,6 +123,9 @@ namespace Gamekit3D
                     break;
                 case FadeType.GameOver:
                     canvasGroup = Instance.gameOverCanvasGroup;
+                    break;
+                case FadeType.PauseGame:
+                    canvasGroup = Instance.PauseGameCanvasGroup;
                     break;
                 default:
                     canvasGroup = Instance.loadingCanvasGroup;
