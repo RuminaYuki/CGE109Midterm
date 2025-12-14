@@ -12,7 +12,6 @@ public class MonsterDamage : MonoBehaviour
         Debug.Log(other.gameObject.tag);
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("if (other.gameObject.CompareTag(\"Player\"))");
             spawnPoint.GotoSpawnPoint(other.transform);
         }
 

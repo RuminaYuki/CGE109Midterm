@@ -36,6 +36,7 @@ public class ManageCutScene : MonoBehaviour
             // ถ้าค้างครบกำหนด → เปลี่ยนซีน
             if (currentHoldTime >= holdESC)
             {
+                Cursor.visible = true;
                 SceneManager.LoadScene(nextSceneName);
             }
         }
@@ -48,6 +49,7 @@ public class ManageCutScene : MonoBehaviour
 
     void VideoFinished(VideoPlayer vp)
     {
+        Cursor.visible = true;
         SceneManager.LoadScene(nextSceneName);
     }
 }

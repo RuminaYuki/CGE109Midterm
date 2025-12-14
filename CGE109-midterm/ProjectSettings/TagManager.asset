@@ -8,6 +8,7 @@ TagManager:
   - Noise
   - Enemy
   - PlayerCollider
+  - Vent
   layers:
   - Default
   - TransparentFX
