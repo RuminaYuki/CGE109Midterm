@@ -2,6 +2,7 @@ using Gamekit3D;
 using UnityEngine;
 using System.Collections;
 using Unity.VisualScripting;
+using System.Collections.Generic;
 
 public class SpawnPoint : MonoBehaviour
 {
@@ -9,7 +10,9 @@ public class SpawnPoint : MonoBehaviour
     public MonsterManager monsterManagerScript;
     public Vector3 _spawnPoint;
     private GameObject player;
-    private PlayerMovement PlayerMovementScript; 
+    private PlayerMovement PlayerMovementScript;
+
+    public List<GameObject> Inventory = new List<GameObject>();
 
     private void Awake()
     {
@@ -32,6 +35,7 @@ public class SpawnPoint : MonoBehaviour
     public void SetSpawnPoint(Transform spawnpoint)
     {
         _spawnPoint = spawnpoint.position;
+        Inventory = PlayerMovementScript.Inventory;
     }
 
 

@@ -160,11 +160,17 @@ public class InteractableShowLabel : MonoBehaviour
                     return;
                 }
             }
-            if (climbingScript != null && GameObj != null)
+            if (climbingScript != null && GameObj != null && !climbingScript.Active)
             {
                 climbingScript.Climbing(GameObj);
+                return;
             }
-            Debug.Log("Nothing" + IsItem);
+            else
+            {
+                climbingScript.StopClimbing();
+                return;
+            }
+            Debug.Log("Nothing");
             return;
         }
         return;

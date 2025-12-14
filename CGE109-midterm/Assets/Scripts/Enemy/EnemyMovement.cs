@@ -20,6 +20,7 @@ public class EnemyMovement : MonoBehaviour
     private Vector3 m_Position;
     private Vector3 m_Direction;
     private Quaternion targetRotation;
+    public float stuckTimer;
 
     public bool isLocking;
 
@@ -38,6 +39,20 @@ public class EnemyMovement : MonoBehaviour
     {
         DetectPlayer();
         animator.SetFloat("Velocity", Agent.velocity.sqrMagnitude);
+
+        if (Agent.hasPath && Agent.velocity.magnitude < 0.2f)
+        {
+            stuckTimer += Time.deltaTime;
+
+            if (stuckTimer > 1f)
+            {
+                Agent.ResetPath();
+            }
+        }
+        else
+        {
+            stuckTimer = 0f;
+        }
     }
 
     void OnTriggerEnter(Collider other)
