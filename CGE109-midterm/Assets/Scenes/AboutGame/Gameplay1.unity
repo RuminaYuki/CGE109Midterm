@@ -10329,17 +10329,17 @@ PrefabInstance:
     - target: {fileID: 8086122061207692985, guid: 7758fae54999aa345b7a23ae49759e38,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -26.38
+      value: 8.4
       objectReference: {fileID: 0}
     - target: {fileID: 8086122061207692985, guid: 7758fae54999aa345b7a23ae49759e38,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.02
+      value: -3.05
       objectReference: {fileID: 0}
     - target: {fileID: 8086122061207692985, guid: 7758fae54999aa345b7a23ae49759e38,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 48.46
+      value: 37.7
       objectReference: {fileID: 0}
     - target: {fileID: 8086122061207692985, guid: 7758fae54999aa345b7a23ae49759e38,
         type: 3}
@@ -16566,6 +16566,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 114393664545964125}
+        m_TargetAssemblyTypeName: Gamekit3D.DialogueCanvasController, Assembly-CSharp
+        m_MethodName: ActivateCanvasWithText
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Get Keycard2
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 114393664545964125}
+        m_TargetAssemblyTypeName: Gamekit3D.DialogueCanvasController, Assembly-CSharp
+        m_MethodName: DeactivateCanvasWithDelay
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 1.5
+          m_StringArgument: Get Keycard2
+          m_BoolArgument: 0
+        m_CallState: 2
   parent: {fileID: 709055924}
   calParent: 1
 --- !u!82 &466048044
@@ -17628,7 +17652,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2011563592}
   - {fileID: 1894168404}
   - {fileID: 1038752246}
   - {fileID: 2140198283}
@@ -26669,7 +26692,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 499493857}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1661910574001403941, guid: 2f73a415dbda34140b77a30d0117b194,
         type: 3}
@@ -26740,6 +26763,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GameManager 1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406293790604687606, guid: 2f73a415dbda34140b77a30d0117b194,
+        type: 3}
+      propertyPath: m_Alpha
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7414400148234183659, guid: 2f73a415dbda34140b77a30d0117b194,
         type: 3}
@@ -47782,6 +47810,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 114393664545964125}
+        m_TargetAssemblyTypeName: Gamekit3D.DialogueCanvasController, Assembly-CSharp
+        m_MethodName: ActivateCanvasWithText
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Get Keycard1
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 114393664545964125}
+        m_TargetAssemblyTypeName: Gamekit3D.DialogueCanvasController, Assembly-CSharp
+        m_MethodName: DeactivateCanvasWithDelay
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 1.5
+          m_StringArgument: Get Keycard1
+          m_BoolArgument: 0
+        m_CallState: 2
   parent: {fileID: 1286840297}
   calParent: 2
 --- !u!82 &1657356799
@@ -56642,12 +56694,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72f95ceccc9a04e47900cc95d5ffa22a, type: 3}
---- !u!4 &2011563592 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3017684330265297197, guid: 2f73a415dbda34140b77a30d0117b194,
-    type: 3}
-  m_PrefabInstance: {fileID: 842660610}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2011563596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67762,5 +67808,6 @@ SceneRoots:
   - {fileID: 1205824367}
   - {fileID: 303521753}
   - {fileID: 1492087136}
+  - {fileID: 842660610}
   - {fileID: 499493857}
   - {fileID: 224260304042621763}
