@@ -42,7 +42,7 @@ public class InteractableShowLabel : MonoBehaviour
         {
             if (_onFogus)
             {
-                if (PushableObjectScript != null) 
+                if (PushableObjectScript != null)
                 {
                     if (PushableObjectScript.IsPush == false)
                     {
@@ -50,7 +50,8 @@ public class InteractableShowLabel : MonoBehaviour
                     }
                     else { text.SetActive(false); }
                     Event();
-                } else
+                }
+                else
                 {
                     Event();
                     text.SetActive(_onFogus);
@@ -72,7 +73,7 @@ public class InteractableShowLabel : MonoBehaviour
 
     public void OnFogusByPlayer()
     {
-        if (text != null) 
+        if (text != null)
         {
             _onFogus = true;
         }
@@ -91,7 +92,7 @@ public class InteractableShowLabel : MonoBehaviour
                 _pickUpScript.PickUpObject(Item);
                 return;
             }
-            if (IsItem) 
+            if (IsItem)
             {
                 if (bgsScript != null)
                 {
@@ -103,10 +104,10 @@ public class InteractableShowLabel : MonoBehaviour
                     DestroyAfterActivate();
                     return;
                 }
-            } 
-            if (SimpleTranslatorControllerScript != null) 
+            }
+            if (SimpleTranslatorControllerScript != null)
             {
-                if (!NeedKeyCard1 && !NeedKeyCard2) 
+                if (!NeedKeyCard1 && !NeedKeyCard2)
                 {
                     SimpleTranslatorControllerScript.activate();
                     if (OneTimeActivateOnly)
@@ -114,7 +115,8 @@ public class InteractableShowLabel : MonoBehaviour
                         DestroyAfterActivate();
                     }
                     return;
-                } else if (PlayerMovementScript != null)
+                }
+                else if (PlayerMovementScript != null)
                 {
                     if (NeedKeyCard1)
                     {
@@ -144,13 +146,13 @@ public class InteractableShowLabel : MonoBehaviour
             }
             if (PushableObjectScript != null)
             {
-                
+
                 if (PushableObjectScript.IsPush == false)
                 {
                     PushableObjectScript.PushPoint = this.gameObject;
                     print("here " + PushableObjectScript.StartActivate);
                     PushableObjectScript.StartPush(PushPoint);
-                        
+
                     return;
                 }
                 if (PushableObjectScript.StartActivate == true)
@@ -160,11 +162,17 @@ public class InteractableShowLabel : MonoBehaviour
                     return;
                 }
             }
-            if (climbingScript != null && GameObj != null)
+            if (climbingScript != null && GameObj != null && !climbingScript.Active)
             {
                 climbingScript.Climbing(GameObj);
+                return;
             }
-            Debug.Log("Nothing" + IsItem);
+            else
+            {
+                climbingScript.StopClimbing();
+                return;
+            }
+            Debug.Log("Nothing");
             return;
         }
         return;
@@ -182,7 +190,7 @@ public class InteractableShowLabel : MonoBehaviour
             Destroy(this.gameObject);
             Destroy(GameObj);
         }
-        
+
     }
     private void OnTriggerStay(Collider other)
     {
@@ -200,6 +208,6 @@ public class InteractableShowLabel : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        
+
     }
 }

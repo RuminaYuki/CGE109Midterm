@@ -20,6 +20,7 @@ public class EnemyMovement : MonoBehaviour
     private Vector3 m_Position;
     private Vector3 m_Direction;
     private Quaternion targetRotation;
+    public float stuckTimer;
 
     public bool isLocking;
 
@@ -38,6 +39,20 @@ public class EnemyMovement : MonoBehaviour
     {
         DetectPlayer();
         animator.SetFloat("Velocity", Agent.velocity.sqrMagnitude);
+
+        if (Agent.hasPath && Agent.velocity.magnitude < 0.2f)
+        {
+            stuckTimer += Time.deltaTime;
+
+            if (stuckTimer > 1f)
+            {
+                Agent.ResetPath();
+            }
+        }
+        else
+        {
+            stuckTimer = 0f;
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -73,7 +88,7 @@ public class EnemyMovement : MonoBehaviour
 
             yield return null;
         }
-        
+
         yield return new WaitForSeconds(0.5f);
         Agent.SetDestination(m_Position);
         yield return new WaitForSeconds(0.1f);
@@ -85,7 +100,6 @@ public class EnemyMovement : MonoBehaviour
         seePlayer = false;
         if (!player)
         {
-            Debug.Log("!player");
             return;
         }
 
@@ -95,12 +109,10 @@ public class EnemyMovement : MonoBehaviour
 
         if (distanceToPlayer <= detectRadius)
         {
-            Debug.Log("distanceToPlayer <= detectRadius");
             float angle = Vector3.Angle(raycastTransform.forward, directionToPlayer);
 
             if (angle <= detectAngle / 2)
             {
-                Debug.Log("angle <= detectAngle / 2");
                 if (!Physics.Raycast(raycastTransform.position, directionToPlayer, distanceToPlayer, obstructionMask))
                 {
                     animator.SetTrigger("Is Turn around");
@@ -116,7 +128,7 @@ public class EnemyMovement : MonoBehaviour
                 return;
             }
             Agent.SetDestination(player.position);
-            
+
         }
 
     }

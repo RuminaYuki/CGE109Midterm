@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.InputSystem.XR;
 
 public class ClimbingScript : MonoBehaviour
 {
@@ -14,17 +15,20 @@ public class ClimbingScript : MonoBehaviour
     public CharacterController PlayerCharacterController;
 
     public bool Active = false;
+    [HideInInspector] public bool Start = false;
 
     private void Update()
     {
         if (PlayerMovementScript != null)
         {
-            if (!PlayerMovementScript.IsMoveTo && Active)
+            if (!PlayerMovementScript.IsMoveTo && Start)
             {
-                Active = false;
+                Start = false;
+                Active = true;
                 Debug.Log("Here Climb");
                 PlayerMovementScript.useMoveCharacter = false;
                 StartCoroutine(DelayedAction());
+                return;
             }
         }
     }
@@ -34,20 +38,27 @@ public class ClimbingScript : MonoBehaviour
         Player = PlayerObj;
         PlayerMovementScript = PlayerObj.GetComponent<PlayerMovement>();
         PlayerCharacterController = PlayerObj.GetComponent<CharacterController>();
-
+        if (!PlayerMovementScript.useMoveCharacter) return;
         if (pointStart != null && pointUp != null && pointEnd != null)
         {
             PlayerMovementScript.MoveToPoint(pointStart.position);
-            Active = true;
+            Start = true;
             return;
         }
 
         Debug.Log("PointStart, pointUp or pointEnd is null");
     }
 
+    public void StopClimbing()
+    {
+        StopAllCoroutines();
+        PlayerMovementScript.useMoveCharacter = true;
+        PlayerCharacterController.height = 1.5f;
+        Active = false;
+    }
     IEnumerator DelayedAction()
     {
-        
+
         // 1. ย่อตัวลง
         yield return StartCoroutine(ChangeHeight(PlayerCharacterController, 1.5f, 1.0f, startTime));
         print("Down");
@@ -61,13 +72,13 @@ public class ClimbingScript : MonoBehaviour
         print("Move to End");
 
         PlayerMovementScript.useMoveCharacter = true;
-        
+        Active = false;
         print("Done!");
     }
 
     IEnumerator ChangeHeight(CharacterController controller, float start, float end, float duration)
     {
-        
+
         float time = 0f;
         while (time < duration)
         {

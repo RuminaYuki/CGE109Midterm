@@ -2,14 +2,18 @@ using Gamekit3D;
 using UnityEngine;
 using System.Collections;
 using Unity.VisualScripting;
+using System.Collections.Generic;
 
 public class SpawnPoint : MonoBehaviour
 {
 
     public MonsterManager monsterManagerScript;
+    public OBJManager OBJManagerScript;
     public Vector3 _spawnPoint;
     private GameObject player;
-    private PlayerMovement PlayerMovementScript; 
+    private PlayerMovement PlayerMovementScript;
+
+    public List<GameObject> Inventory = new List<GameObject>();
 
     private void Awake()
     {
@@ -32,6 +36,8 @@ public class SpawnPoint : MonoBehaviour
     public void SetSpawnPoint(Transform spawnpoint)
     {
         _spawnPoint = spawnpoint.position;
+        Inventory.Clear();
+        Inventory.AddRange(PlayerMovementScript.Inventory);
     }
 
 
@@ -57,6 +63,9 @@ public class SpawnPoint : MonoBehaviour
         PlayerMovementScript.canMove = false;
         player.transform.position = _spawnPoint;
         monsterManagerScript.ResetAllMonsters();
+        OBJManagerScript.ResetAllOBJs();
+        PlayerMovementScript.Inventory.Clear();
+        PlayerMovementScript.Inventory.AddRange(Inventory);
 
         yield return new WaitUntil(() => continued);
         if (continuedType == "Reset")
