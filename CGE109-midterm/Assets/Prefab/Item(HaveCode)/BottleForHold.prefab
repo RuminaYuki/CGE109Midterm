@@ -4968,7 +4968,7 @@ PrefabInstance:
     - target: {fileID: 2585368993393561516, guid: 4b81622e0b3f6704f8b726979cea18c2,
         type: 3}
       propertyPath: m_Name
-      value: BottleForThrow
+      value: BottleForHold
       objectReference: {fileID: 0}
     - target: {fileID: 2585368993393561516, guid: 4b81622e0b3f6704f8b726979cea18c2,
         type: 3}
@@ -5061,87 +5061,11 @@ PrefabInstance:
       insertIndex: 0
       addedObject: {fileID: 7478597066259187208}
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2585368993393561516, guid: 4b81622e0b3f6704f8b726979cea18c2,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1863997944322544484}
-    - targetCorrespondingSourceObject: {fileID: 2585368993393561516, guid: 4b81622e0b3f6704f8b726979cea18c2,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5406797966197450029}
-    - targetCorrespondingSourceObject: {fileID: 2585368993393561516, guid: 4b81622e0b3f6704f8b726979cea18c2,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6076391471787379719}
     - targetCorrespondingSourceObject: {fileID: 6859180146540155819, guid: 4b81622e0b3f6704f8b726979cea18c2,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1007786858005687985}
   m_SourcePrefab: {fileID: 100100000, guid: 4b81622e0b3f6704f8b726979cea18c2, type: 3}
---- !u!1 &4153153362672932740 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2585368993393561516, guid: 4b81622e0b3f6704f8b726979cea18c2,
-    type: 3}
-  m_PrefabInstance: {fileID: 1892608727934998568}
-  m_PrefabAsset: {fileID: 0}
---- !u!54 &1863997944322544484
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4153153362672932740}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &5406797966197450029
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4153153362672932740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a91e094b9389264d9c27fa646a08d8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Particle: {fileID: 6987562446888713477}
-  MeshObj: {fileID: 5004433342396795779}
---- !u!114 &6076391471787379719
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4153153362672932740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a97b4e3108c0bc4db245f4ab1e8caaa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ItemData:
-    itemName: Bottle
-    itemType: 1
-    gameObj: {fileID: 4153153362672932740, guid: 993e624d2a46b1b419891c77186fd6b1,
-      type: 3}
 --- !u!1 &5004433342396795779 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6859180146540155819, guid: 4b81622e0b3f6704f8b726979cea18c2,
