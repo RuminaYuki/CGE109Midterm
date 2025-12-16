@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using static UnityEditor.Progress;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -44,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
     public bool FlashlightOn;
     public bool KeyCard;
     public bool KeyCard2;
+    public bool MasterCard;
 
     public bool useMoveCharacter = true;
     void Awake()
@@ -57,6 +59,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        
         grounded = Physics.CheckSphere(groundCheck.position, groundDistance, environmentMask);
         if (grounded && velocity.y < 0)
         {
@@ -91,7 +94,6 @@ public class PlayerMovement : MonoBehaviour
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }*/
 
-        
     }
 
     public void MoveCharacter()
@@ -160,9 +162,7 @@ public class PlayerMovement : MonoBehaviour
             if (!Inventory.Contains(pickUpObj))
             {
                 Inventory.Add(pickUpObj);
-                if (pickUpObj.name == "FlashLight") SetFlashlight();
-                if (pickUpObj.name == "KeyCard 1") SetKeyCard();
-                if (pickUpObj.name == "KeyCard2") SetKeyCard2();
+                CheckItemInventory();
                 return false;
             }
         }
@@ -172,17 +172,52 @@ public class PlayerMovement : MonoBehaviour
         {
             Inventory.Add(pickUpObj);
             HeldObj = GameObject.Instantiate(IPU.ItemData.gameObj, HeldPosition.transform.position, CameraHolder.transform.rotation);
-            /*Rigidbody rb = HeldObj.GetComponent<Rigidbody>();
-            rb.isKinematic = false;
-            rb.useGravity = false;
-            rb.constraints = RigidbodyConstraints.FreezeRotationZ |
-                             RigidbodyConstraints.FreezeRotationX |
-                             RigidbodyConstraints.FreezeRotationY |
-                             RigidbodyConstraints.FreezePositionX |
-                             RigidbodyConstraints.FreezePositionY |
-                             RigidbodyConstraints.FreezePosition;*/
             HeldObj.transform.SetParent(HeldPosition);
             return true;
+        }
+        return false;
+    }
+
+    public void CheckItemInventory()
+    {
+        if (CheckInventory("FlashLight"))
+        {
+            FlashlightOn = true;
+            Flashlight.SetActive(true);
+        }
+        else
+        {
+            FlashlightOn = false;
+            Flashlight.SetActive(false);
+        }
+
+        if (CheckInventory("KeyCard 1"))
+        {
+            KeyCard = true;
+        }
+        else
+        {
+            KeyCard = false;
+        }
+
+        if (CheckInventory("KeyCard2"))
+        {
+            KeyCard2 = true;
+        }
+        else
+        {
+            KeyCard2 = false;
+        }
+    }
+
+    public bool CheckInventory(string Name)
+    {
+        foreach (GameObject Nameitem in Inventory)
+        {
+            if (Nameitem.name == Name)
+            {
+                return true;
+            }
         }
         return false;
     }
@@ -202,19 +237,4 @@ public class PlayerMovement : MonoBehaviour
         return false;
     }
 
-    public void SetFlashlight()
-    {
-        Flashlight.SetActive(true);
-        FlashlightOn = true;
-    }
-
-    public void SetKeyCard()
-    {
-        KeyCard = true;
-    }
-
-    public void SetKeyCard2()
-    {
-        KeyCard2 = true;
-    }
 }

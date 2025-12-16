@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7553361770938487094
 Transform:
   m_ObjectHideFlags: 0
@@ -48,7 +48,7 @@ MonoBehaviour:
   ItemData:
     itemName: Flash Light
     itemType: 0
-    itemPrefab: {fileID: 0}
+    gameObj: {fileID: 0}
 --- !u!1001 &5029058635373859459
 PrefabInstance:
   m_ObjectHideFlags: 0

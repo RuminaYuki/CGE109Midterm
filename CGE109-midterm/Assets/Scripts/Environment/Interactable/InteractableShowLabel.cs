@@ -20,7 +20,7 @@ public class InteractableShowLabel : MonoBehaviour
 
     public bool IsItem = false;
     public bool ItemForThrow = false;
-    [SerializeField] private GameObject Item;
+    public GameObject Item;
     [SerializeField] private PickUpScript _pickUpScript;
 
     [SerializeField] private SimpleTranslatorController SimpleTranslatorControllerScript;
@@ -100,7 +100,7 @@ public class InteractableShowLabel : MonoBehaviour
                 if (PlayerMovementScript != null)
                 {
                     PlayerMovementScript.AddToInventory(Item);
-                    DestroyAfterActivate();
+                    SetActiveAfterActivate(GameObj);
                     return;
                 }
             } 
@@ -111,7 +111,7 @@ public class InteractableShowLabel : MonoBehaviour
                     SimpleTranslatorControllerScript.activate();
                     if (OneTimeActivateOnly)
                     {
-                        DestroyAfterActivate();
+                        SetActiveAfterActivate(GameObj);
                     }
                     return;
                 } else if (PlayerMovementScript != null)
@@ -123,7 +123,7 @@ public class InteractableShowLabel : MonoBehaviour
                             SimpleTranslatorControllerScript.activate();
                             if (OneTimeActivateOnly)
                             {
-                                DestroyAfterActivate();
+                                SetActiveAfterActivate(GameObj);
                             }
                             return;
                         }
@@ -135,7 +135,7 @@ public class InteractableShowLabel : MonoBehaviour
                             SimpleTranslatorControllerScript.activate();
                             if (OneTimeActivateOnly)
                             {
-                                DestroyAfterActivate();
+                                SetActiveAfterActivate(GameObj);
                             }
                             return;
                         }
@@ -174,6 +174,11 @@ public class InteractableShowLabel : MonoBehaviour
             return;
         }
         return;
+    }
+
+    private void SetActiveAfterActivate(GameObject gameObject = null)
+    {
+        gameObject.SetActive(false);
     }
 
     private void DestroyAfterActivate()

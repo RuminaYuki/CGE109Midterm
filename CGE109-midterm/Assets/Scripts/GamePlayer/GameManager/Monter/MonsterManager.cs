@@ -41,7 +41,7 @@ public class MonsterManager : MonoBehaviour
                 if (EnemyMM != null)
                     EnemyMM.Agent.SetDestination(mon.initialPosition);
                 // Reset state อื่นๆ ได้ เช่น mon.GetComponent<EnemyAI>().ResetState();
-                Debug.Log("Reset monster: " + mon.name);
+                //Debug.Log("Reset monster: " + mon.name);
             }
         }
     }

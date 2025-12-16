@@ -8,9 +8,12 @@ public class SpawnPoint : MonoBehaviour
 {
 
     public MonsterManager monsterManagerScript;
+    public OBJManager OBJManagerScript;
+    public ItemRespawnManager itemRespawnManagerScript;
     public Vector3 _spawnPoint;
     private GameObject player;
     private PlayerMovement PlayerMovementScript;
+
 
     public List<GameObject> Inventory = new List<GameObject>();
 
@@ -35,7 +38,8 @@ public class SpawnPoint : MonoBehaviour
     public void SetSpawnPoint(Transform spawnpoint)
     {
         _spawnPoint = spawnpoint.position;
-        Inventory = PlayerMovementScript.Inventory;
+        Inventory.Clear();
+        Inventory.AddRange(PlayerMovementScript.Inventory);
     }
 
 
@@ -61,6 +65,11 @@ public class SpawnPoint : MonoBehaviour
         PlayerMovementScript.canMove = false;
         player.transform.position = _spawnPoint;
         monsterManagerScript.ResetAllMonsters();
+        itemRespawnManagerScript.ResetAllItems();
+        OBJManagerScript.ResetAllOBJs();
+        PlayerMovementScript.Inventory.Clear();
+        PlayerMovementScript.Inventory.AddRange(Inventory);
+        PlayerMovementScript.CheckItemInventory();
 
         yield return new WaitUntil(() => continued);
         if (continuedType == "Reset")

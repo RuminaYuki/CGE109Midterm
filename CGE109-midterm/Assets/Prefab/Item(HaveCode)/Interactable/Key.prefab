@@ -31,6 +31,7 @@ Transform:
   m_Children:
   - {fileID: 5550910740256676737}
   - {fileID: 4112297018074917138}
+  - {fileID: 3117418921268041614}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &554507124859487738
@@ -283,7 +284,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 8123
+  m_VersionIndex: 8150
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -383,6 +384,7 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+  Active: 0
 --- !u!135 &4355903168585939655
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -402,7 +404,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 4
+  m_Radius: 5.27
   m_Center: {x: 0.005520344, y: -0.0009207949, z: 0.020012856}
 --- !u!1 &1258457364977411433
 GameObject:
@@ -419,7 +421,7 @@ GameObject:
   - component: {fileID: 8096356282052136558}
   - component: {fileID: 6358056872909846805}
   - component: {fileID: 828810115622597192}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: InteractableKey
   m_TagString: Untagged
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
@@ -653,7 +655,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2736
+  m_VersionIndex: 2763
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -772,17 +774,24 @@ MonoBehaviour:
   _onFogus: 0
   text: {fileID: 3377028998353241054}
   UpperY: 0.3
-  _keyCode: 0
+  onTriggerMode: 0
+  _keyCode: 101
   OneTimeActivateOnly: 0
   OutlineScript: {fileID: 0}
-  GameObj: {fileID: 0}
-  IsItem: 0
+  GameObj: {fileID: 322370953699729361}
+  PlayerMovementScript: {fileID: 0}
+  IsItem: 1
   ItemForThrow: 0
-  Item: {fileID: 0}
+  Item: {fileID: 776612855980317059, guid: 189c238fff71a5c43bbc4afd4604d292, type: 3}
   _pickUpScript: {fileID: 0}
-  SimpleTranslatorScript: {fileID: 0}
+  SimpleTranslatorControllerScript: {fileID: 0}
   PushPoint: {fileID: 0}
   PushableObjectScript: {fileID: 0}
+  ColliderObj: {fileID: 0}
+  bgsScript: {fileID: 0}
+  climbingScript: {fileID: 0}
+  NeedKeyCard1: 0
+  NeedKeyCard2: 0
 --- !u!1 &2855471054977467304
 GameObject:
   m_ObjectHideFlags: 0
@@ -1062,3 +1071,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 0}
+--- !u!1 &6132380573494918779
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3117418921268041614}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3117418921268041614
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6132380573494918779}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.005519869, y: -0.0009212494, z: 0.020011902}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 198347996902989542}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

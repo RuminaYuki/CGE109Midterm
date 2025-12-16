@@ -100,7 +100,7 @@ public class EnemyMovement : MonoBehaviour
         seePlayer = false;
         if (!player)
         {
-            Debug.Log("!player");
+            //Debug.Log("!player");
             return;
         }
 
@@ -110,12 +110,12 @@ public class EnemyMovement : MonoBehaviour
 
         if (distanceToPlayer <= detectRadius)
         {
-            Debug.Log("distanceToPlayer <= detectRadius");
+            //Debug.Log("distanceToPlayer <= detectRadius");
             float angle = Vector3.Angle(raycastTransform.forward, directionToPlayer);
 
             if (angle <= detectAngle / 2)
             {
-                Debug.Log("angle <= detectAngle / 2");
+                //Debug.Log("angle <= detectAngle / 2");
                 if (!Physics.Raycast(raycastTransform.position, directionToPlayer, distanceToPlayer, obstructionMask))
                 {
                     animator.SetTrigger("Is Turn around");
