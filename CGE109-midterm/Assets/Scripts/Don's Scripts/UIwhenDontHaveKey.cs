@@ -22,7 +22,7 @@ public class UIwhenDontHaveKey : MonoBehaviour
     {
         if (!playerMovement.KeyCard)
         {
-            dialogueCanvasController.ActivateCanvasWithText("need key for pass");
+            dialogueCanvasController.ActivateCanvasWithText("need KeyCard1 for pass");
             dialogueCanvasController.DeactivateCanvasWithDelay(2f);
         }
     }
@@ -31,7 +31,7 @@ public class UIwhenDontHaveKey : MonoBehaviour
     {
         if (!playerMovement.KeyCard2)
         {
-            dialogueCanvasController.ActivateCanvasWithText("need key for pass");
+            dialogueCanvasController.ActivateCanvasWithText("need KeyCard2 for pass");
             dialogueCanvasController.DeactivateCanvasWithDelay(2f);
         }
     }
