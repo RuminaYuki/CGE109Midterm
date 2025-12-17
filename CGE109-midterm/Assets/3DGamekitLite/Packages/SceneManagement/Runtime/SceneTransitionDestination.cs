@@ -15,5 +15,13 @@ namespace Gamekit3D
         [Tooltip("This is the gameobject that has transitioned.  For example, the player.")]
         public GameObject transitioningGameObject;
         public UnityEvent OnReachDestination;
+
+        private void Awake()
+        {
+            if (transitioningGameObject == null)
+            {
+                transitioningGameObject = GameObject.FindGameObjectWithTag("Player");
+            }
+        }
     }
 }
