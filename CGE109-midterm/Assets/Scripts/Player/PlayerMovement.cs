@@ -64,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
             Flashlight.SetActive(false);
         }
     }
+    
 
     void Update()
     {

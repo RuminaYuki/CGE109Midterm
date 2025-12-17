@@ -21,66 +21,77 @@ namespace Gamekit3D.GameCommands
 
         void OnTriggerEnter(Collider other)
         {
-            
-            if (other.gameObject.CompareTag("Player") && !active)
+            if (playerMovementScript != null)
             {
-                //Send();
-                print(other.name);
-                if (KeyCardScanner1 != null)
+                if (other.gameObject.CompareTag("Player") && !active)
                 {
-                    KeyCardScanner1.SetActive(false);
-                    if(bgsScript != null && Player != null)
+                    //Send();
+                    print(other.name);
+                    if (KeyCardScanner1 != null)
                     {
-                        bgsScript.OnTriggerEnter(Player);
+                        KeyCardScanner1.SetActive(false);
+                        if(bgsScript != null && Player != null)
+                        {
+                            bgsScript.OnTriggerEnter(Player);
+                        }
                     }
-                }
-                if (KeyCardScanner2 != null) 
-                {
-                    KeyCardScanner2.SetActive(false);
-                }
+                    if (KeyCardScanner2 != null) 
+                    {
+                        KeyCardScanner2.SetActive(false);
+                    }
                 
-                playerMovementScript.MoveToPoint(transform.position);
+                    playerMovementScript.MoveToPoint(transform.position);
                 
-                IsCleanning = true;
+                    IsCleanning = true;
 
+                    return;
 
+                }
 
             }
-            
+            if (0 != (layers.value & 1 << other.gameObject.layer))
+            {
+                Send();
+                return;
+            }
+
         }
 
         private void OnTriggerStay(Collider other)
         {
-            if (playerMovementScript.IsMoveTo == false && !active)
+            if (playerMovementScript != null)
             {
-                SimpleTranslatorControllerScript.activate();
-                active = true;
-            }
-            if (!SimpleTranslatorControllerScript.active) 
-            {
-                IsCleanning = false ;
-            }
-            if (SimpleTranslatorControllerScript.active)
-            {
-                if (KeyCardScanner1 != null)
+                if (playerMovementScript.IsMoveTo == false && !active)
                 {
-                    KeyCardScanner1.SetActive(false);
+                    SimpleTranslatorControllerScript.activate();
+                    active = true;
                 }
-                if (KeyCardScanner2 != null)
+                if (!SimpleTranslatorControllerScript.active) 
                 {
-                    KeyCardScanner2.SetActive(false);
+                    IsCleanning = false ;
                 }
-                IsCleanning = true;
-            }
-            if (!IsCleanning)
-            {
-                if (KeyCardScanner1 != null)
+                if (SimpleTranslatorControllerScript.active)
                 {
-                    KeyCardScanner1.SetActive(true);
+                    if (KeyCardScanner1 != null)
+                    {
+                        KeyCardScanner1.SetActive(false);
+                    }
+                    if (KeyCardScanner2 != null)
+                    {
+                        KeyCardScanner2.SetActive(false);
+                    }
+                    IsCleanning = true;
                 }
-                if (KeyCardScanner2 != null)
+                if (!IsCleanning)
                 {
-                    KeyCardScanner2.SetActive(true);
+                    if (KeyCardScanner1 != null)
+                    {
+                        KeyCardScanner1.SetActive(true);
+                    }
+                    if (KeyCardScanner2 != null)
+                    {
+                        KeyCardScanner2.SetActive(true);
+                    }
                 }
             }
         }

@@ -10,8 +10,8 @@ public class SpawnPoint : MonoBehaviour
     public MonsterManager monsterManagerScript;
     public OBJManager OBJManagerScript;
     public Vector3 _spawnPoint;
-    private GameObject player;
-    private PlayerMovement PlayerMovementScript;
+    public GameObject player;
+    public PlayerMovement PlayerMovementScript;
 
     public List<GameObject> Inventory = new List<GameObject>();
 

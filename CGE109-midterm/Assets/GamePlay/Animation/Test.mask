@@ -1,0 +1,117 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Test
+  m_Mask: 01000000010000000000000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: group1
+    m_Weight: 1
+  - m_Path: group1/scp-682
+    m_Weight: 1
+  - m_Path: group1/scp682_armature
+    m_Weight: 1
+  - m_Path: group1/scp682_armature/BackLeg3.L.001
+    m_Weight: 1
+  - m_Path: group1/scp682_armature/BackLeg3.R.001
+    m_Weight: 1
+  - m_Path: group1/scp682_armature/base
+    m_Weight: 1
+  - m_Path: group1/scp682_armature/base/BackLeg.L
+    m_Weight: 1
+  - m_Path: group1/scp682_armature/base/BackLeg.L/BackLeg2.L
+    m_Weight: 1
+  - m_Path: group1/scp682_armature/base/BackLeg.L/BackLeg2.L/BackLeg3.L
+    m_Weight: 1
+  - m_Path: group1/scp682_armature/base/BackLeg.L/BackLeg2.L/BackLeg3.L/BackLeg4.L
+    m_Weight: 1
+  - m_Path: group1/scp682_armature/base/BackLeg.L/BackLeg2.L/BackLeg3.L/BackLeg4.L/BackLeg_finger.L
+    m_Weight: 1
+  - m_Path: group1/scp682_armature/base/BackLeg.L/BackLeg2.L/BackLeg3.L/BackLeg4.L/BackLeg_finger2.L
+    m_Weight: 1
+  - m_Path: group1/scp682_armature/base/BackLeg.L/BackLeg2.L/BackLeg3.L/BackLeg4.L/BackLeg_finger3.L
+    m_Weight: 1
+  - m_Path: group1/scp682_armature/base/BackLeg.R
+    m_Weight: 1
+  - m_Path: group1/scp682_armature/base/BackLeg.R/BackLeg2.R
+    m_Weight: 1
+  - m_Path: group1/scp682_armature/base/BackLeg.R/BackLeg2.R/BackLeg3.R
+    m_Weight: 1
+  - m_Path: group1/scp682_armature/base/BackLeg.R/BackLeg2.R/BackLeg3.R/BackLeg4.R
+    m_Weight: 1
+  - m_Path: group1/scp682_armature/base/BackLeg.R/BackLeg2.R/BackLeg3.R/BackLeg4.R/BackLeg_finger.R
+    m_Weight: 1
+  - m_Path: group1/scp682_armature/base/BackLeg.R/BackLeg2.R/BackLeg3.R/BackLeg4.R/BackLeg_finger2.R
+    m_Weight: 1
+  - m_Path: group1/scp682_armature/base/BackLeg.R/BackLeg2.R/BackLeg3.R/BackLeg4.R/BackLeg_finger3.R
+    m_Weight: 1
+  - m_Path: group1/scp682_armature/base/base2
+    m_Weight: 1
+  - m_Path: group1/scp682_armature/base/base2/base3
+    m_Weight: 1
+  - m_Path: group1/scp682_armature/base/base2/base3/ForwardLeg.L
+    m_Weight: 1
+  - m_Path: group1/scp682_armature/base/base2/base3/ForwardLeg.L/ForwardLeg2.L
+    m_Weight: 1
+  - m_Path: group1/scp682_armature/base/base2/base3/ForwardLeg.L/ForwardLeg2.L/ForwardLeg3.L
+    m_Weight: 1
+  - m_Path: group1/scp682_armature/base/base2/base3/ForwardLeg.L/ForwardLeg2.L/ForwardLeg3.L/ForwardLeg4.L
+    m_Weight: 1
+  - m_Path: group1/scp682_armature/base/base2/base3/ForwardLeg.L/ForwardLeg2.L/ForwardLeg3.L/ForwardLeg4.L/ForwardLeg_finger.L
+    m_Weight: 1
+  - m_Path: group1/scp682_armature/base/base2/base3/ForwardLeg.L/ForwardLeg2.L/ForwardLeg3.L/ForwardLeg4.L/ForwardLeg_finger1.L
+    m_Weight: 1
+  - m_Path: group1/scp682_armature/base/base2/base3/ForwardLeg.L/ForwardLeg2.L/ForwardLeg3.L/ForwardLeg4.L/ForwardLeg_finger2.L
+    m_Weight: 1
+  - m_Path: group1/scp682_armature/base/base2/base3/ForwardLeg.R
+    m_Weight: 1
+  - m_Path: group1/scp682_armature/base/base2/base3/ForwardLeg.R/ForwardLeg2.R
+    m_Weight: 1
+  - m_Path: group1/scp682_armature/base/base2/base3/ForwardLeg.R/ForwardLeg2.R/ForwardLeg3.R
+    m_Weight: 1
+  - m_Path: group1/scp682_armature/base/base2/base3/ForwardLeg.R/ForwardLeg2.R/ForwardLeg3.R/ForwardLeg4.R
+    m_Weight: 1
+  - m_Path: group1/scp682_armature/base/base2/base3/ForwardLeg.R/ForwardLeg2.R/ForwardLeg3.R/ForwardLeg4.R/ForwardLeg_finger.R
+    m_Weight: 1
+  - m_Path: group1/scp682_armature/base/base2/base3/ForwardLeg.R/ForwardLeg2.R/ForwardLeg3.R/ForwardLeg4.R/ForwardLeg_finger1.R
+    m_Weight: 1
+  - m_Path: group1/scp682_armature/base/base2/base3/ForwardLeg.R/ForwardLeg2.R/ForwardLeg3.R/ForwardLeg4.R/ForwardLeg_finger2.R
+    m_Weight: 1
+  - m_Path: group1/scp682_armature/base/base2/base3/group2
+    m_Weight: 1
+  - m_Path: group1/scp682_armature/base/base2/base3/group2/SCP-080
+    m_Weight: 1
+  - m_Path: group1/scp682_armature/base/base2/base3/group2/snapshot1Group_transform3_3
+    m_Weight: 1
+  - m_Path: group1/scp682_armature/base/base2/base3/neck
+    m_Weight: 0
+  - m_Path: group1/scp682_armature/base/base2/base3/neck/neck2
+    m_Weight: 0
+  - m_Path: group1/scp682_armature/base/base2/base3/neck/neck2/head1
+    m_Weight: 0
+  - m_Path: group1/scp682_armature/base/base2/base3/neck/neck2/head1/transform3
+    m_Weight: 0
+  - m_Path: group1/scp682_armature/base/base2/base3/neck/neck2/head1/transform3/head
+    m_Weight: 0
+  - m_Path: group1/scp682_armature/base/base2/base3/neck/neck2/head1/transform3/head/jaw
+    m_Weight: 0
+  - m_Path: group1/scp682_armature/base/tail
+    m_Weight: 1
+  - m_Path: group1/scp682_armature/base/tail/tail2
+    m_Weight: 1
+  - m_Path: group1/scp682_armature/base/tail/tail2/tail3
+    m_Weight: 1
+  - m_Path: group1/scp682_armature/base/tail/tail2/tail3/tail4
+    m_Weight: 1
+  - m_Path: group1/scp682_armature/base/tail/tail2/tail3/tail4/tail5
+    m_Weight: 1
+  - m_Path: group1/scp682_armature/ForwardLeg3.L.001
+    m_Weight: 1
+  - m_Path: group1/scp682_armature/ForwardLeg3.R.001
+    m_Weight: 1
