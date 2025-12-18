@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -97,10 +98,12 @@ public class PlayerMovement : MonoBehaviour
             speedMultiplier = 2f;
         }
 
-        /*if (grounded && Input.GetButtonDown("Jump"))
+        Debug.Log(gameObject.scene.name);
+        if (gameObject.scene.name == "mainMenu")
         {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-        }*/
+            Debug.Log("here");
+            Destroy(gameObject);
+        }
 
         
     }
