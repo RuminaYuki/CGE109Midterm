@@ -21100,7 +21100,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  activate: 1
+  activate: 0
   OnStartCommand: {fileID: 0}
   OnStopCommand: {fileID: 0}
   onStartAudio: {fileID: 0}
