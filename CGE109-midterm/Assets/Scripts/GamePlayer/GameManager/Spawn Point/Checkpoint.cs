@@ -10,7 +10,7 @@ public class Checkpoint : MonoBehaviour
         SpawnPointScript = FindObjectOfType<SpawnPoint>();
         if (SpawnPointScript != null && DefaultPoint)
         {
-            SpawnPointScript._spawnPoint = transform.position;
+            SpawnPointScript._spawnPoint = transform;
             SpawnPoint spawnPoint = FindAnyObjectByType<SpawnPoint>();
             spawnPoint.ReInventory();
         }

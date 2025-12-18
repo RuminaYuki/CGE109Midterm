@@ -9,7 +9,7 @@ public class SpawnPoint : MonoBehaviour
 
     public MonsterManager monsterManagerScript;
     public OBJManager OBJManagerScript;
-    public Vector3 _spawnPoint;
+    public Transform _spawnPoint;
     public GameObject player;
     public PlayerMovement PlayerMovementScript;
 
@@ -44,7 +44,7 @@ public class SpawnPoint : MonoBehaviour
 
     public void SetSpawnPoint(Transform spawnpoint)
     {
-        _spawnPoint = spawnpoint.position;
+        _spawnPoint = spawnpoint;
         Inventory.Clear();
         Inventory.AddRange(PlayerMovementScript.Inventory);
     }
@@ -70,7 +70,8 @@ public class SpawnPoint : MonoBehaviour
     {
         yield return StartCoroutine(ScreenFader.FadeSceneOut(ScreenFader.FadeType.GameOver));
         PlayerMovementScript.canMove = false;
-        player.transform.position = _spawnPoint;
+        player.transform.position = _spawnPoint.position;
+        player.transform.forward = _spawnPoint.forward;
         monsterManagerScript.ResetAllMonsters();
         OBJManagerScript.ResetAllOBJs();
         PlayerMovementScript.Inventory.Clear();

@@ -45,6 +45,7 @@ public class MonsterAI : MonoBehaviour
 
     void Start()
     {
+        spawnPoint = FindAnyObjectByType<SpawnPoint>();
         player = GameObject.FindGameObjectWithTag(playerTag)?.transform;
         originalHeadRotation = transform.rotation;
         originalBodyRotation = transform.rotation;
