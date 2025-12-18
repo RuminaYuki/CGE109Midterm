@@ -16,24 +16,30 @@ public class MonterMoveMent : MonoBehaviour
     public CharacterController controller;
     private Vector3 moveDirection;
     private Vector3 velocity;
-    private bool IsMoveTo;
+    public bool IsMoveTo;
     private Vector3 MoveTo;
     public Transform Point;
     public Transform Point2;
+    public Transform PointTarget;
     private Vector3 Move;
     public float speed = 11f;
 
+    public Vector3 StartPoint;
+    private void Awake()
+    {
+        StartPoint = transform.position;
+    }
     private void Update()
     {
         //Camera.transform.LookAt(transform.position);
         if (IsMoveTo && controller != null)
         {
-            MoveTo = (Point.transform.position - transform.position);
+            MoveTo = (PointTarget.transform.position - transform.position);
             MoveTo.y = 0f;
             MoveTo.Normalize();
             controller.Move(MoveTo * speed * Time.deltaTime);
             //print(Point + "" + transform.position);
-            if (Point.position.x - transform.position.x < 0.02f && Point.position.z - transform.position.z < 0.02f && Point.position.x - transform.position.x > -0.02f && Point.position.z - transform.position.z > -0.02f)
+            if (PointTarget.position.x - transform.position.x < 0.02f && PointTarget.position.z - transform.position.z < 0.02f && PointTarget.position.x - transform.position.x > -0.02f && PointTarget.position.z - transform.position.z > -0.02f)
             {
                 print("Stop");
                 IsMoveTo = false;
@@ -44,6 +50,7 @@ public class MonterMoveMent : MonoBehaviour
 
     public void Active()
     {
+        PointTarget = Point;
         IsMoveTo = true;
         //Animator.enabled = true;
         StartCoroutine(LookAtAfterDelay());
@@ -66,8 +73,8 @@ public class MonterMoveMent : MonoBehaviour
 
         yield return new WaitForSeconds(0.3f);
         Animator.SetBool("Growl", false);
-        Point = Point2;
-        speed = 3.5f;
+        PointTarget = Point2;
+        speed = 3.8f;
         IsMoveTo = true;
     }
 }

@@ -20,6 +20,11 @@ public class TS_Mainmenu : MonoBehaviour
 
     void Awake()
     {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            Destroy(player);
+        }
         // หา Fade Image อัตโนมัติ ถ้าไม่เซ็ตใน Inspector
         if (fadeImage == null)
         {

@@ -100,8 +100,9 @@ public class InteractableShowLabel : MonoBehaviour
                 }
                 if (PlayerMovementScript != null)
                 {
+                    GameObj.SetActive(false);
                     PlayerMovementScript.AddToInventory(Item);
-                    DestroyAfterActivate();
+                    //DestroyAfterActivate();
                     return;
                 }
             }
@@ -184,11 +185,12 @@ public class InteractableShowLabel : MonoBehaviour
         {
             OutlineScript.enabled = false;
             this.gameObject.SetActive(false);
+            return;
         }
         if (GameObj != null)
         {
-            Destroy(this.gameObject);
-            Destroy(GameObj);
+            GameObj.SetActive(false);
+            return;
         }
 
     }
