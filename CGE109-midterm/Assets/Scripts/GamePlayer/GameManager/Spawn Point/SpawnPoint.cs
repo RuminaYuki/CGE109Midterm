@@ -26,6 +26,15 @@ public class SpawnPoint : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    public void Update()
+    {
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+            PlayerMovementScript = player.GetComponent<PlayerMovement>();
+        }   
+    }
+
     public void GotoSpawnPoint(Transform player)
     {
         if (player == null) {return; }
@@ -80,5 +89,15 @@ public class SpawnPoint : MonoBehaviour
         }
         continued = false;
         yield break;
+    }
+
+    public void ReInventory()
+    {
+        if (PlayerMovementScript != null)
+        {
+            PlayerMovementScript.Inventory.Clear();
+            PlayerMovementScript.Inventory.AddRange(Inventory);
+            PlayerMovementScript.CheckItemInventory();
+        }
     }
 }

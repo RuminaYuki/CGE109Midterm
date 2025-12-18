@@ -9,7 +9,6 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public static PlayerMovement Instance;
     //public static PlayerMovement instance;
 
     public float moveSpeed = 5f;
@@ -50,15 +49,6 @@ public class PlayerMovement : MonoBehaviour
     public bool useMoveCharacter = true;
     void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-        DontDestroyOnLoad(gameObject);
         controller = GetComponent<CharacterController>();
         if (!FlashlightOn)
         {
@@ -98,10 +88,8 @@ public class PlayerMovement : MonoBehaviour
             speedMultiplier = 2f;
         }
 
-        Debug.Log(gameObject.scene.name);
         if (gameObject.scene.name == "mainMenu")
         {
-            Debug.Log("here");
             Destroy(gameObject);
         }
 
