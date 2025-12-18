@@ -1,20 +1,25 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
 public class PlayRandomSound : MonoBehaviour
 {
-    AudioSource auidoSource;
-    [SerializeField] AudioClip[] audioClips;
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip[] audioClips;
+
+    public AudioSource AudioSource => audioSource; // 👈 เพิ่มบรรทัดนี้
 
     private void Start()
     {
-        auidoSource = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void playWithRandom()
     {
+        if (audioClips == null || audioClips.Length == 0)
+            return;
+
         int r = Random.Range(0, audioClips.Length);
-        auidoSource.clip = audioClips[r];
-        auidoSource.Play();
+        audioSource.clip = audioClips[r];
+        audioSource.Play();
     }
 }

@@ -1,16 +1,19 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayWhenPressECheckByActive : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] UnityEvent press;
+    [SerializeField] GameObject reference;
+    bool played = false;
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if (played) return;
+        if(reference.activeSelf == false)
+        {
+            press.Invoke();
+            played = true;
+        }
     }
 }
