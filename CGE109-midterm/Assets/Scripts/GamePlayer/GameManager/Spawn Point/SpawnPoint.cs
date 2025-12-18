@@ -66,6 +66,7 @@ public class SpawnPoint : MonoBehaviour
         OBJManagerScript.ResetAllOBJs();
         PlayerMovementScript.Inventory.Clear();
         PlayerMovementScript.Inventory.AddRange(Inventory);
+        PlayerMovementScript.CheckItemInventory();
 
         yield return new WaitUntil(() => continued);
         if (continuedType == "Reset")

@@ -35,12 +35,7 @@ public class OBJManager : MonoBehaviour
         {
             if (mon != null)  // ป้องกัน null
             {
-                mon.transform.position = mon.initialPosition;
-                mon.transform.rotation = mon.initialRotation;
-                EnemyMovement EnemyMM = mon.GetComponent<EnemyMovement>();
-                if (EnemyMM != null)
-                    EnemyMM.Agent.SetDestination(mon.initialPosition);
-                // Reset state อื่นๆ ได้ เช่น mon.GetComponent<EnemyAI>().ResetState();
+                mon.gameObject.SetActive(true);
                 Debug.Log("Reset OBJs: " + mon.name);
             }
         }
