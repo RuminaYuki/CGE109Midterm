@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Drawing;
 using Unity.VisualScripting;
-using UnityEditor.Tilemaps;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 
 public class MonterMoveMent : MonoBehaviour
 {
@@ -59,19 +59,20 @@ public class MonterMoveMent : MonoBehaviour
 
     private IEnumerator LookAtAfterDelay()
     {
-
+        PlayerMovement playerMovement = FindObjectOfType<PlayerMovement>();
         //PlayerCam = Camera.GetComponent<PlayerCam>();
         PlayerCam.enabled = false;
         Camera.transform.LookAt(transform.position);
         yield return new WaitForSeconds(0.5f);
         Animator.SetBool("Growl", true);
         Animator.enabled = true;
+        playerMovement.canMove = false;
 
         yield return new WaitForSeconds(0.6f);
-
         PlayerCam.enabled = true;
+        playerMovement.canMove = true;
 
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(1f);
         Animator.SetBool("Growl", false);
         PointTarget = Point2;
         speed = 3.8f;

@@ -1,5 +1,3 @@
-using Gamekit3D;
-using UnityEditor.Timeline.Actions;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]

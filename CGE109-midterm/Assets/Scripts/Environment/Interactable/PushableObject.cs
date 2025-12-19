@@ -3,7 +3,7 @@
 public class PushableObject : MonoBehaviour
 {
     [SerializeField] private GameObject Player;
-    [SerializeField] private PlayerMovement PlayerMoveMentScript;
+    [SerializeField] public PlayerMovement PlayerMoveMentScript;
     [SerializeField] private Collider PlayerCollider;
     [SerializeField] public GameObject PushPoint;
     [SerializeField] private LayerMask wallMask; // เพิ่มสำหรับตรวจว่าข้างหน้ามีกำแพงไหม

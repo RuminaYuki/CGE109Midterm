@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    ItemRespawnManager RespawnManager;
+    public ItemRespawnManager RespawnManager;
 
     private void Awake()
     {

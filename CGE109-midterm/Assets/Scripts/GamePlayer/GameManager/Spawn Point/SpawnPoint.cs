@@ -1,7 +1,6 @@
 using Gamekit3D;
 using UnityEngine;
 using System.Collections;
-using Unity.VisualScripting;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
@@ -13,6 +12,7 @@ public class SpawnPoint : MonoBehaviour
     public Transform _spawnPoint;
     public GameObject player;
     public PlayerMovement PlayerMovementScript;
+    public ItemRespawnManager ItemRespawnManagerScript;
 
     public List<GameObject> Inventory = new List<GameObject>();
 
@@ -21,6 +21,7 @@ public class SpawnPoint : MonoBehaviour
     private void Awake()
     {
         CurrentScene = SceneManager.GetActiveScene().name;
+        ItemRespawnManagerScript = FindObjectOfType<ItemRespawnManager>();
         player = GameObject.FindGameObjectWithTag("Player");
         if (player != null )
         {
@@ -28,18 +29,22 @@ public class SpawnPoint : MonoBehaviour
         }
         //_spawnPoint = player.transform.position;
         DontDestroyOnLoad(gameObject);
+        if (CurrentScene == "EndingGame")
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     public void Update()
     {
+        if (SceneManager.GetActiveScene().name != CurrentScene)
+        {
+            Awake();
+        }
         if (player == null)
         {
             player = GameObject.FindGameObjectWithTag("Player");
             PlayerMovementScript = player.GetComponent<PlayerMovement>();
-        }
-        if (SceneManager.GetActiveScene().name != CurrentScene)
-        {
-            Awake();
         }
     }
 
@@ -81,6 +86,10 @@ public class SpawnPoint : MonoBehaviour
         player.transform.position = _spawnPoint.position;
         player.transform.forward = _spawnPoint.forward;
         monsterManagerScript.ResetAllMonsters();
+        if (ItemRespawnManagerScript != null)
+        {
+            ItemRespawnManagerScript.ResetAllItems();
+        }
         OBJManagerScript.ResetAllOBJs();
         PlayerMovementScript.Inventory.Clear();
         PlayerMovementScript.Inventory.AddRange(Inventory);

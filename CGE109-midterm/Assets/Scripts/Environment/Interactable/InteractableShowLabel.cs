@@ -38,7 +38,7 @@ public class InteractableShowLabel : MonoBehaviour
 
     void Update()
     {
-        if (text != null)
+        if (text != null && !onTriggerMode)
         {
             if (_onFogus)
             {
@@ -67,7 +67,10 @@ public class InteractableShowLabel : MonoBehaviour
         {
             Event();
         }
-
+        if (text != null)
+        {
+            text.SetActive(_onFogus);
+        }
         _onFogus = false;
     }
 
@@ -148,7 +151,7 @@ public class InteractableShowLabel : MonoBehaviour
             if (PushableObjectScript != null)
             {
 
-                if (PushableObjectScript.IsPush == false)
+                if (PushableObjectScript.IsPush == false && !PushableObjectScript.PlayerMoveMentScript.GetIsMoveTo())
                 {
                     PushableObjectScript.PushPoint = this.gameObject;
                     print("here " + PushableObjectScript.StartActivate);
@@ -156,11 +159,11 @@ public class InteractableShowLabel : MonoBehaviour
 
                     return;
                 }
+                print("Stop");
+                PushableObjectScript.StopPush();
+                return;
                 if (PushableObjectScript.StartActivate == true)
                 {
-                    print("Stop");
-                    PushableObjectScript.StopPush();
-                    return;
                 }
             }
             if (climbingScript != null && GameObj != null && !climbingScript.Active)
