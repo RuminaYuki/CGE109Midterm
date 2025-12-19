@@ -40,20 +40,9 @@ public class OBJManager : MonoBehaviour
         {
             if (mon != null)  // ป้องกัน null
             {
-                interactableShowLabel = mon.GetComponentInChildren<InteractableShowLabel>();
-
-                Debug.Log("here");
-                foreach (GameObject item in spawnPoint.Inventory)
-                {
-                    Debug.Log(interactableShowLabel.Item.name + item.name);
-                    if (interactableShowLabel.Item.name == item.name)
-                    {
-                        Debug.Log("here");
-                        mon.gameObject.SetActive(false);
-                        return;
-                    }
-                    mon.gameObject.SetActive(true);
-                }
+                OBJ oBJ = mon.GetComponent<OBJ>();
+                mon.transform.position = oBJ.initialPosition;
+                mon.transform.rotation = oBJ.initialRotation;
             }
         }
     }

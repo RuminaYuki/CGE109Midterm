@@ -73,6 +73,7 @@ public class SpawnPoint : MonoBehaviour
         player.transform.position = _spawnPoint.position;
         player.transform.forward = _spawnPoint.forward;
         monsterManagerScript.ResetAllMonsters();
+        ItemRespawnManager.Instance.ResetAllItems();
         OBJManagerScript.ResetAllOBJs();
         PlayerMovementScript.Inventory.Clear();
         PlayerMovementScript.Inventory.AddRange(Inventory);
