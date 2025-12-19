@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections;
 using Unity.VisualScripting;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class SpawnPoint : MonoBehaviour
 {
@@ -15,8 +16,11 @@ public class SpawnPoint : MonoBehaviour
 
     public List<GameObject> Inventory = new List<GameObject>();
 
+    private string CurrentScene;
+
     private void Awake()
     {
+        CurrentScene = SceneManager.GetActiveScene().name;
         player = GameObject.FindGameObjectWithTag("Player");
         if (player != null )
         {
@@ -32,7 +36,11 @@ public class SpawnPoint : MonoBehaviour
         {
             player = GameObject.FindGameObjectWithTag("Player");
             PlayerMovementScript = player.GetComponent<PlayerMovement>();
-        }   
+        }
+        if (SceneManager.GetActiveScene().name != CurrentScene)
+        {
+            Awake();
+        }
     }
 
     public void GotoSpawnPoint(Transform player)
@@ -73,7 +81,6 @@ public class SpawnPoint : MonoBehaviour
         player.transform.position = _spawnPoint.position;
         player.transform.forward = _spawnPoint.forward;
         monsterManagerScript.ResetAllMonsters();
-        ItemRespawnManager.Instance.ResetAllItems();
         OBJManagerScript.ResetAllOBJs();
         PlayerMovementScript.Inventory.Clear();
         PlayerMovementScript.Inventory.AddRange(Inventory);

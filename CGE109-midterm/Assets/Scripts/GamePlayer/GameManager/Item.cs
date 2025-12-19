@@ -2,10 +2,14 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
+    ItemRespawnManager RespawnManager;
+
+    private void Awake()
+    {
+        RespawnManager = FindObjectOfType<ItemRespawnManager>();
+    }
     void Start()
     {
-        ItemRespawnManager.Instance.RegisterItemRespawn(this.gameObject);
-
-        //Debug.Log("Monster registered: " + gameObject.name + " at " + initialPosition);
+        RespawnManager.RegisterItemRespawn(this.gameObject);
     }
 }
