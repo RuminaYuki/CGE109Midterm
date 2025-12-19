@@ -10038,7 +10038,7 @@ PrefabInstance:
         type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 417bb6534eb530246a30e82d6c30798b, type: 2}
+      objectReference: {fileID: 2100000, guid: ac4f79d04533b1444843b4928675720b, type: 2}
     - target: {fileID: 8986799516933637627, guid: 506a15366bed8d44ca55b101c8f21688,
         type: 3}
       propertyPath: m_Convex
