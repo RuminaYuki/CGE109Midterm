@@ -240,6 +240,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: elevatorDoor
       objectReference: {fileID: 0}
+    - target: {fileID: 3564844920695581082, guid: 5183fc40e4e1ce14fb048386a6f804ac,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f4a715bd6e8d49e4b81884158b3877e4, type: 2}
     - target: {fileID: 4307474201601804601, guid: 5183fc40e4e1ce14fb048386a6f804ac,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -305,6 +310,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5814432789473344628, guid: 5183fc40e4e1ce14fb048386a6f804ac,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f4a715bd6e8d49e4b81884158b3877e4, type: 2}
     - target: {fileID: 8891001281371269035, guid: 5183fc40e4e1ce14fb048386a6f804ac,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -315,6 +325,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 78
       objectReference: {fileID: 0}
+    - target: {fileID: 9016569642815967690, guid: 5183fc40e4e1ce14fb048386a6f804ac,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f4a715bd6e8d49e4b81884158b3877e4, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
