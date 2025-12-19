@@ -1,14 +1,19 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class OBJManager : MonoBehaviour
 {
     public static OBJManager Instance;  // Singleton
 
-    private List<OBJ> allOBJs = new List<OBJ>();
+    private List<GameObject> allOBJs = new List<GameObject>();
+
+    public InteractableShowLabel interactableShowLabel;
+    public SpawnPoint spawnPoint;
 
     void Awake()
     {
+        spawnPoint = FindObjectOfType<SpawnPoint>();
         // Singleton pattern: ตัวเดียวใน scene
         if (Instance == null)
         {
@@ -20,7 +25,7 @@ public class OBJManager : MonoBehaviour
         }
     }
 
-    public void RegisterOBJ(OBJ OBJ)
+    public void RegisterOBJ(GameObject OBJ)
     {
         if (!allOBJs.Contains(OBJ))
         {
@@ -31,12 +36,24 @@ public class OBJManager : MonoBehaviour
 
     public void ResetAllOBJs()
     {
-        foreach (OBJ mon in allOBJs)
+        foreach (GameObject mon in allOBJs)
         {
             if (mon != null)  // ป้องกัน null
             {
-                mon.gameObject.SetActive(true);
-                Debug.Log("Reset OBJs: " + mon.name);
+                interactableShowLabel = mon.GetComponentInChildren<InteractableShowLabel>();
+
+                Debug.Log("here");
+                foreach (GameObject item in spawnPoint.Inventory)
+                {
+                    Debug.Log(interactableShowLabel.Item.name + item.name);
+                    if (interactableShowLabel.Item.name == item.name)
+                    {
+                        Debug.Log("here");
+                        mon.gameObject.SetActive(false);
+                        return;
+                    }
+                    mon.gameObject.SetActive(true);
+                }
             }
         }
     }

@@ -20,7 +20,7 @@ public class InteractableShowLabel : MonoBehaviour
 
     public bool IsItem = false;
     public bool ItemForThrow = false;
-    [SerializeField] private GameObject Item;
+    public GameObject Item;
     [SerializeField] private PickUpScript _pickUpScript;
 
     [SerializeField] private SimpleTranslatorController SimpleTranslatorControllerScript;

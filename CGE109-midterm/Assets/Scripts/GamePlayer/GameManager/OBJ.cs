@@ -12,7 +12,7 @@ public class OBJ : MonoBehaviour
         initialRotation = transform.rotation;
 
         // Register ตัวเองกับ manager
-        OBJManager.Instance.RegisterOBJ(this);
+        OBJManager.Instance.RegisterOBJ(this.gameObject);
 
         //Debug.Log("Monster registered: " + gameObject.name + " at " + initialPosition);
     }
