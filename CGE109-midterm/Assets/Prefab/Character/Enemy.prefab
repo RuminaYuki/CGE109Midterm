@@ -114,6 +114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 0}
+  MonterMoveMent: {fileID: 0}
 --- !u!1 &4490138760263405362
 GameObject:
   m_ObjectHideFlags: 0
